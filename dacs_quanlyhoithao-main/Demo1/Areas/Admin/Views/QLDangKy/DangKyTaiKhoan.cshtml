@@ -1,0 +1,110 @@
+﻿@using Demo1.Models
+@{
+    ViewBag.Title = "DangKyTaiKhoan";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section jsFooter{
+
+    <script src="~/Areas/Admin/Controllers/JS/DangKy.js"></script>
+}
+
+<div>
+    <div class="box">
+        <h2 style="text-align:center; color: black; margin-top:10px">Quản Lý Người Dùng Đăng Ký</h2>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table id="example2" class="table table-bordered table-hover">
+                <thead style="color:black; text-align:center">
+                    <tr>
+                        <th>
+                            MSSV
+                        </th>
+                        <th>
+                            Họ Và Tên
+                        </th>
+                        <th>
+                            Lớp
+                        </th>
+                        <th>
+                            Trạng thái
+                        </th>
+                        <th>
+                            Tác Vụ
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        if (item.TrangThai == 0)
+                        {
+                            <tr style="color:black; text-align:center">
+                                <td>
+                                    @item.MaSo
+                                </td>
+                                <td>
+                                    @item.Ten
+                                </td>
+                                <td>
+                                    @item.LOP.TenLop
+                                </td>
+                                <td>
+                                    @if (item.TrangThai == 0)
+                                    {
+                                        <p>Chờ Xác Nhận</p>
+                                    }
+                                </td>
+                                <td>
+                                    <a class="btnXacNhan" data-id="@item.MaSo" style="font-size:10px;" href="#"><i class="fa fa-fw fa-check "></i></a>
+                                    @*<a class="btn btn-primary" style="font-size:10px;" href="#" onclick="if (confirm('Bạn có chắc chắn muốn xác nhận đăng ký này không?') == true) { location.href = '/QLDangKy/XacNhanDangKy?id=@item.MaSo' }"><i class="fa fa-fw fa-check "></i></a>
+                                        <a class="btn btn-primary" style="font-size:10px;" href="#" onclick="if (confirm('Bạn có chắc chắn muốn xoá đăng ký này không?') == true) { location.href = '/QLDangKy/XoaDangKy?id=@item.MaSo' }"><i class="fa fa-fw fa-trash "></i></a>*@
+                                </td>
+                            </tr>
+                        }
+
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+
+@*<script>
+        $("#LoadingStatus").html("Loading.....");
+        $.get("/QLDangKy/GetUserList", null, DataBind);
+        function DataBind(UserList) {
+            var SetData = $($SetUserList);
+            for (var i = 0; i < UserList.length; i++) {
+                var Data = "<tr class='row_" + UserList[i].MaSo + "'>" +
+                    "<td>" + UserList[i].MaSo + "</td>" +
+                    "</tr>";
+                SetData.append(Data);
+                $("$LoadingStatus").html("");
+            }
+        }
+    </script>*@
+
+@*<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>*@
+<script src="~/Areas/Admin/Content/vendor/jquery/jquery-3.4.1.min.js"></script>
+<script>
+    $(".btnXacNhan").click(function () {
+        console.log("Xác Nhận Đăng Ký");
+        var id = $(this).attr("data-id")
+        $.ajax({
+            dataType: "json",
+            type: "POST",
+            data: { id: id },
+            url: "/Areas/Admin/Controllers/QuanLy/QLDangKy/XacNhanDangKy",
+            success: function (status) {
+
+                alert("Đã Xác Nhận Đăng Ký Thành Công")
+            },
+            error: function (err) {
+                alert('Error ', err.statusText);
+            }
+        })
+    })
+
+</script>
+

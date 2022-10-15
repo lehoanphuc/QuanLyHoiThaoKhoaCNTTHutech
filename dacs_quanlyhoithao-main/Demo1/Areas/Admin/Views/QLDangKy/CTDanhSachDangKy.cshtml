@@ -1,0 +1,73 @@
+﻿@using Demo1.Models
+@{
+    ViewBag.Title = "CTDanhSachDangKy";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="box">
+        <h2 style="text-align:center; color: black; margin-top:10px">Chi Tiết Đội Đăng Ký</h2>
+
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table id="example2" class="table table-bordered table-hover">
+                <thead style="color:black; text-align:center">
+                    <tr>
+                        <th>
+                            MSSV
+                        </th>
+                        <th>
+                            Họ Và Tên
+                        </th>
+                        <th>
+                            Lớp
+                        </th>
+                        <th>
+                            Giới Tính
+                        </th>
+                        <th>
+                            Ngày Sinh
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr style="color:black; text-align:center">
+                            <td>
+                                @item.DOI.USER.MaSo
+                            </td>
+                            <td>
+                                @item.DOI.USER.Ten
+                            </td>
+                            <td>
+                                @item.DOI.USER.LOP.TenLop
+                            </td>
+                            <td>
+                                @if (item.DOI.USER.GioiTinh == 1)
+                                {
+                                    <p>Nam</p>
+                                }
+                                else
+                                {
+                                    <p>Nữ</p>
+                                }
+                            </td>
+                            <td>
+                                @item.DOI.USER.NgaySinh
+                            </td>
+                            @*<td>
+                                    <a class="btn btn-danger" style="font-size:10px;" href="@Url.Action("CTDanhSachDangKy", new { id = item.MaPhieuDK })"><i class="fa fa-fw fa-list"></i></a>
+                                </td>*@
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+
+

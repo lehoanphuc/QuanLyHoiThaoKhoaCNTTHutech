@@ -1,0 +1,35 @@
+﻿@model Demo1.Models.MONTHIDAU
+@{
+    ViewBag.Title = "SuaMenuTop";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Chọn Chế Độ Hiển Thị</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label style="margin-left:13px">Trạng Thái</label>
+            <div class="col-md-10">
+                <select name="TrangThaiMenu" id="TrangThaiMenu">
+                    <option value="1">Hiển Thị</option>
+                    <option value="0">Ẩn</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+                <a class="btn btn-primary" href="@Url.Action("ThanhMenuTop","QLGiaoDien")" style=" margin-left: 16px">Trở Về</a>
+            </div>
+        </div>
+
+    </div>
+}

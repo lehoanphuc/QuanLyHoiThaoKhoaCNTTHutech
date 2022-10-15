@@ -1,0 +1,366 @@
+﻿@model Demo1.Models.MONTHIDAU
+@{
+    ViewBag.Title = "ChiTiet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section menuCT{
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("TrangChu","Home")">HỘI THAO IT</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+                    @*@foreach (var mon in Model)
+                        {
+                            var url = "ChiTiet" + "/" + mon.MaMon;
+                            <li class="nav-item">
+
+                                <a href="@url" style="margin-right:20px">@mon.TenMon</a>
+                            </li>
+                        }*@
+                </ul>
+
+                <form class="form-inline my-2 my-lg-0">
+                    <div>
+                        @using Demo1.Models
+                        @if (Session["TaiKhoanSV"] != null)
+                        {
+                            USER USER = (USER)Session["TaiKhoanSV"];
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a href="#" class="" data-toggle="dropdown"
+                                       role="button" aria-haspopup="true" aria-
+                                       expanded="false"><h2 class="dropdown-toggle" style="color: black; margin-right: 10px; margin-top: 3px; font-size: 15px;">@USER.Ten</h2> <span class="caret"></span></a>
+
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <li> <a href="@Url.Action("QuanLyDoi","QuanLy")" style="color: black;">Thông Tin Cá Nhân</a></li>
+                                        <li> <a href="@Url.Action("QuanLyDoi","QuanLy")" style="color: black;">Quản Lý Đội</a></li>
+
+                                        <li role="separator" class="divider"> </li>
+                                        <li>
+                                            <a href="@Url.Action("LogOut", "TaiKhoan")" style="color: black;">Đăng Xuất </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul> }
+                        else
+                        {
+                            <a href="@Url.Action("Login","TaiKhoan")" class="btn btn-primary"> Đăng nhập</a>}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hội thao Khoa Công nghệ Thông tin HUTECH</title>
+
+    <link href="/Assets/img/logo.png" rel="icon" type="image/x-icon">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+    <link href="/Content/css?v=-ZvRPXleAiRxNdM4oxcGBufuchUj5XFBBNp_u9ssXj41" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/yourcode.js"></script>
+    <link href="/Content/user_css?v=zuINjPwrq_iC7CNVEgC1SwQDXkHvYChqzdCOrCbbrTU1" rel="stylesheet">
+    <link href="~/Content/css1.css" rel="stylesheet" />
+    
+    @*<style type="text/css">@font-face { font-family: Roboto; src: url("chrome-extension://mcgbeeipkmelnpldkobichboakdfaeon/css/Roboto-Regular.ttf"); }</style>*@
+</head>
+<body>
+    @using Demo1.Models
+    <section class="call-to-action text-white text-center" style=" background: lightblue url('https://file1.hutech.edu.vn/file/editor/homepage/stories/hinh208-fdg/_MG_0003.jpg') no-repeat; background-size: cover; ">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div>
+                    <h1 class="mb-4">
+                        <label style="margin-left:13px">@Model.TenMon</label>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container mb-5 mt-5 pl-5 pr-5">
+        <div class="row">
+            <div class="col-12 col-md-3 bg-light p-3" style="border-radius: 5px">
+                <div class="mb-3 text-center">
+                    <a href="#clear" onclick="openCity(event, 'huongDan')"><b><i></i> DANH MỤC ĐĂNG KÝ</b></a>
+                </div>
+                <hr />
+
+                <div class="tab">
+
+                    <button class="btn mb-1 btn-block btn-sm btn-outline-primary filter-button tablinks active" onclick="openCity(event, 'huongDan')" id="defaultOpen">Hướng dẫn đăng ký</button>
+                    <button class="btn mb-1 btn-block btn-sm btn-outline-primary filter-button tablinks" onclick="openCity(event, 'dangKy')">Đăng ký thi đấu</button>
+                    <button class="btn mb-1 btn-block btn-sm btn-outline-primary filter-button tablinks" onclick="openCity(event, 'luat')">Điều lệ thi đấu</button>
+                    <button class="btn mb-1 btn-block btn-sm btn-outline-primary filter-button tablinks" onclick="openCity(event, 'lichThiDau')">Lịch thi đấu</button>
+                    <button class="btn mb-1 btn-block btn-sm btn-outline-primary filter-button tablinks" onclick="openCity(event, 'ketQua')">Kết quả thi đấu</button>
+
+                </div>
+
+                <script>
+                    function openCity(evt, cityName) {
+                        var i, tabcontent, tablinks;
+                        tabcontent = document.getElementsByClassName("tabcontent");
+                        for (i = 0; i < tabcontent.length; i++) {
+                            tabcontent[i].style.display = "none";
+                        }
+                        tablinks = document.getElementsByClassName("tablinks");
+                        for (i = 0; i < tablinks.length; i++) {
+                            tablinks[i].className = tablinks[i].className.replace(" active", "");
+                        }
+                        document.getElementById(cityName).style.display = "block";
+                        evt.currentTarget.className += " active";
+                    }
+
+                    // Get the element with id="defaultOpen" and click on it
+                    document.getElementById("defaultOpen").click();
+                </script>
+
+                <style>
+
+                    /* Style the tab */
+                    .tab {
+                        float: left;
+                        border: thin;
+                        text-align: center;
+                        margin-bottom: 5px;
+                        background-color: #00000000;
+                        width: 90%;
+                        height: 200px;
+                    }
+
+                        /* Style the buttons inside the tab */
+                        .tab button {
+                            display: block;
+                            background-color: inherit;
+                            color: black;
+                            margin-bottom: 10px;
+                            width: 100%;
+                            border-radius: 7px;
+                            outline: none;
+                            text-align: center;
+                            cursor: pointer;
+                            transition: 0.3s;
+                            font-size: 17px;
+                        }
+
+                            /* Change background color of buttons on hover */
+                            .tab button:hover {
+                                background-color: #F1C40F;
+                            }
+
+                            /* Create an active/current "tab button" class */
+                            .tab button.active {
+                                background-color: #D35400;
+                            }
+
+                    /* Style the tab content */
+                    .tabcontent {
+                        float: left;
+                        padding: 0px 12px;
+                        width: 100%;
+                        border-left: none;
+                        height: auto;
+                    }
+                </style>
+
+
+            </div>
+            <div class="col-12 col-sm-9 pl-3">
+                <div id="result" class="p-3" style="">
+                    <div id="dataTable">
+                        <div id="huongDan" class="tabcontent active">
+                            @Html.Raw(HttpUtility.HtmlDecode(Model.HuongDanDK))
+                        </div>
+
+                        <div id="dangKy" class="tabcontent">
+                            <div class="card mt-4   ">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3 d-none d-md-block">
+                                            <img class="logo-company" src="~/Assets/img/bongChuyenNam.png">
+                                        </div>
+                                        <div class="col-9 col-md-6 mb-1">
+                                            <h5 class="card-title">Bóng chuyền Nam</h5>
+                                            <p class="card-text">
+                                                Tại Trung tâm Đào tạo Nhân lực Chất lượng cao HUTECH (TP. Thủ Đức) <br>
+                                            </p>
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <div class="col-12 col-md-3">
+                                                <button style="height: 40px; width: 130px; margin-left: -20px;" type="button" class="btn btn-sm btn-block btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">Đăng ký</button>
+                                                <div class="modal" id="myModal">
+                                                    <div class="modal-dialog">
+                                                        <div style="width: 210%; margin-left:-60%" class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 style="text-align:center; margin-left:40%" class="modal-title">Đăng ký thi đấu hội thao</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+
+                                                                <form>
+                                                                    <p>
+                                                                        Xin chào, bạn sẽ được chuyển đến trang đăng ký để đăng ký tham gia hội thao, Nếu chưa có đội hãy tạo đội rồi đăng ký nhé !! Khi đăng ký xong bạn phải hoàn tất lệ phí để có thể đăng ký thành công.
+
+                                                                    </p>
+                                                                </form>
+                                                            </div>
+                                                            <style>
+                                                                * {
+                                                                    box-sizing: border-box;
+                                                                }
+
+                                                                /* Create three equal columns that floats next to each other */
+                                                                .column {
+                                                                    float: left;
+                                                                    width: 33.33%;
+                                                                    padding: 10px;
+                                                                    height: 70px; /* Should be removed. Only for demonstration */
+                                                                }
+
+                                                                /* Clear floats after the columns */
+                                                                .row:after {
+                                                                    content: "";
+                                                                    display: table;
+                                                                    clear: both;
+                                                                }
+                                                            </style>
+                                                            <div class="modal-footer">
+                                                                <h6 style="margin-left:-100px; color:darkred"></h6>
+
+                                                                <a class="btn btn-primary" href="@Url.Action("QuanLyDoi","QuanLy")">Tiếp Tục</a>
+                                                                <button type="button" data-bs-dismiss="modal" class="btn btn-danger">Huỷ</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mt-4   ">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3 d-none d-md-block">
+                                            <img class="logo-company" src="~/Assets/img/bongChuyenNu.png">
+                                        </div>
+                                        <div class="col-9 col-md-6 mb-1">
+                                            <h5 class="card-title">Bóng chuyền Nữ</h5>
+                                            <p class="card-text">
+                                                Tại Trung tâm Đào tạo Nhân lực Chất lượng cao HUTECH (TP. Thủ Đức) <br>
+                                            </p>
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <button style="height: 40px; width: 130px; margin-top:30px;" type="button" class="btn btn-sm btn-block btn-danger" data-bs-toggle="modal" data-bs-target="#myModal1">Đăng ký</button>
+                                            <div class="modal" id="myModal1">
+                                                <div class="modal-dialog">
+                                                    <div style="width: 210%; margin-left:-60%" class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 style="text-align:center; margin-left:40%" class="modal-title">Đăng ký Bóng chuyền Nữ</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form>
+                                                            </form>
+                                                        </div>
+                                                        <style>
+                                                            * {
+                                                                box-sizing: border-box;
+                                                            }
+
+                                                            /* Create three equal columns that floats next to each other */
+                                                            .column {
+                                                                float: left;
+                                                                width: 33.33%;
+                                                                padding: 10px;
+                                                                height: 70px; /* Should be removed. Only for demonstration */
+                                                            }
+
+                                                            /* Clear floats after the columns */
+                                                            .row:after {
+                                                                content: "";
+                                                                display: table;
+                                                                clear: both;
+                                                            }
+                                                        </style>
+                                                        <div class="modal-footer">
+                                                            <h6 style="margin-left:-100px; color:darkred">Hãy chắc chắn rằng mọi thông tin bạn nhập bên trên là chính xác. Mọi sai sót, Ban tổ chức không chịu trách nhiệm.</h6>
+                                                            <button type="submit" class="btn btn-primary">Đăng ký</button>
+                                                            <button type="submit" class="btn btn-danger">Huỷ</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div id="luat" class="tabcontent">
+                            @Html.Raw(HttpUtility.HtmlDecode(Model.DIEULE.NoiDung))
+
+                        </div>
+
+
+                        <!--Lịch thi đấu-->
+                        <div id="lichThiDau" class="tabcontent active">
+                            <h1 style="text-align:center">Lịch thi đấu môn bóng chuyền</h1>
+                        </div>
+
+                        <!--Kết quả thi đấu-->
+                        <div id="ketQua" class="tabcontent">
+                            <h1 style="text-align:center">Kết quả thi đấu môn bóng chuyền</h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" async="" src="https://www.gstatic.com/recaptcha/releases/nEGwmCAyCoKVn9PSwAGnQWhY/recaptcha__vi.js" crossorigin="anonymous" integrity="sha384-wVHOBMV5fALu8EvOltsX/jv+6Z+ddWOFGxUHaRMborVzIuDXm1DDQgtiN8WSp23T"></script>
+    <script>
+        const _IS_LOGIN = false;
+    </script>
+
+    <script src="/Assets/js/user_page/studentlogin.js"></script>
+
+
+    <script src="/bundles/jquery?v=Hhw0srL0-4qR8srt_iy89H62uMRP16InFZyBSXo-blQ1"></script>
+
+    <script src="/bundles/bootstrap?v=ZA4h7uzWZi1XSJgibsu2YDxHuSeLAkQywKAdcpLD8lw1"></script>
+
+    <script src="/bundles/user_js?v="></script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=6Le2hPsUAAAAALzwDvu8vWcd7ImuBl_l49f927gN"></script>
+
+    <script src="/Assets/js/user_page/findjob.js"></script>
+    <script src="/Assets/js/user_page/companyjob.js"></script>
+
+
+
+    <div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Le2hPsUAAAAALzwDvu8vWcd7ImuBl_l49f927gN&amp;co=aHR0cDovL2l0b3BlbmRheS5odXRlY2guZWR1LnZuOjgw&amp;hl=vi&amp;v=nEGwmCAyCoKVn9PSwAGnQWhY&amp;size=invisible&amp;cb=6xtepuf6enci" width="256" height="60" role="presentation" name="a-qb4ts84i9q3" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div>
+
+</body>
+

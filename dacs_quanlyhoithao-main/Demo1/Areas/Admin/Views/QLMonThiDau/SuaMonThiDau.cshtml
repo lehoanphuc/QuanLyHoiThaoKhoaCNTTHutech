@@ -1,0 +1,189 @@
+﻿@model Demo1.Models.MONTHIDAU
+@{
+    ViewBag.Title = "SuaMonThiDau";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("SuaMonThiDau", "QLMonThiDau", FormMethod.Post, new { id = "formInput1" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4 style="text-align:center">Sửa Môn Thi Đấu</h4>
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label style="margin-left:13px">Tên Môn Thi Đấu</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TenMon, new { htmlAttributes = new { @style = "width:600px", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TenMon, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label style="margin-left:13px">Thể Thức</label>
+        <div class="col-md-10">
+            <select name="TheLoai" id="TheLoai" class="form-control" style="width:300px">
+                <option>--Chọn--</option>
+                <option value="1">Cá Nhân</option>
+                <option value="2">Đồng Đội</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label style="margin-left:13px">Số Lượng Đội</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SoLuongDoi, new { htmlAttributes = new { @style = "width:300px", @name = "SoLuongDoi", @type = "number", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SoLuongDoi, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label style="margin-left:13px">Số Lượng Thành Viên</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SoLuongThanhVien, new { htmlAttributes = new { @style = "width:300px", @name = "SoLuongThanhVien", @type = "number", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SoLuongThanhVien, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label style="margin-left:13px">Lệ Phí</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.LePhi, new { htmlAttributes = new { @style = "width:300px", @name = "LePhi", @type = "number", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LePhi, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label style="margin-left:13px">Ngày Bắt Đầu</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NgayBatDau, new { htmlAttributes = new { @style = "width:300px", @name = "NgayBatDau", @type = "datetime-local", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NgayBatDau, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label style="margin-left:13px">Ngày Kết Thúc</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NgayKetThuc, new { htmlAttributes = new { @style = "width:300px", @name = "NgayKetThuc", @type = "datetime-local", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NgayKetThuc, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label style="margin-left:13px">Ghi Chú</label>
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label style="margin-left:13px">Điều Lệ Thi Đấu</label>
+        <div class="col-md-10">
+            @if (Model.DIEULE.TrangThai == 1)
+            {
+                @Html.DropDownList("MaDieuLe", null, htmlAttributes: new { @style = "width:400px", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaDieuLe, "", new { @class = "text-danger" })
+            }
+        </div>
+    </div>
+    <div class="form-group">
+        <label style="margin-left:13px">Nội Dung</label>
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" }, id = "txtNoiDung" })
+            @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label style="margin-left:13px">Trạng Thái</label>
+        <div class="col-md-10">
+            <select name="TrangThai" id="TrangThai">
+                <option value="1">Sử Dụng</option>
+                <option value="0">Ẩn</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Lưu" class="btn btn-primary" />
+            <a class="btn btn-primary" href="@Url.Action("DanhSachMonThiDau","QLMonThiDau")" style=" margin-left: 16px">Trở Về</a>
+        </div>
+    </div>
+
+</div>
+}
+
+
+@section Scripts {
+    <script>
+        var editor = CKEDITOR.replace('txtNoiDung', {
+            customConfig: '/Areas/Admin/Content/ckeditor/config.js',
+        });
+        $(document).ready(function () {
+            $("#formInput").validate({
+                rules: {
+                    TenMon: {
+                        required: true
+                    },
+                    TheLoai: {
+                        required: true,
+                    },
+                    SoLuong: {
+                        required: true,
+                    },
+                    LePhi: {
+                        required: true,
+                    },
+                    NgayBatDau: {
+                        required: true,
+                    },
+                    NgayKetThuc: {
+                        required: true,
+                    },
+                    GhiChu: {
+                        required: true,
+                  
+                    },
+                    DieuLe: {
+                        required: true,
+                    },
+                    NoiDung: {
+                        required: true,
+                       
+                    }
+
+                },
+                messages: {
+                    TenMon: {
+                        required: "Vui lòng không để trống tên môn"
+                    },
+                    TheLoai: {
+                        required: "Bạn phải chọn thể thức thi đấu",
+                    },
+                    SoLuong: {
+                        required: "Vui lòng không để trống số lượng",
+                    },
+                    LePhi: {
+                        required: "Mật khẩu và mật khẩu xác nhận phải giống nhau"
+                    },
+                    NgayBatDau: {
+                        required: "Vui lòng chọn ngày",
+                    },
+                    NgayKetThuc: {
+                        required: "Vui lòng chọn ngày",
+                        
+                    },
+                    GhiChu: {
+                        required: "không được để trống",
+                    },
+                    DieuLe: {
+                        required: "Không được để trống",
+                    },
+                    NoiDung: {
+                        required: "Email không được để trống",
+                    }
+                }
+            })
+        });
+    </script>
+
+}

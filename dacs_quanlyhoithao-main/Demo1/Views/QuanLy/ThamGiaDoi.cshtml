@@ -1,0 +1,27 @@
+﻿@model Demo1.Models.DOI
+@{
+    ViewBag.Title = "ThamGiaDoi";
+    Layout = "~/Views/Shared/_LayoutTeam.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="">
+        <div class="group">
+            <div class="hr"></div>
+            <h5 style="color:red; text-align:center"> @ViewBag.ThongBao</h5>
+            <div class="col-md-10">
+                <input placeholder="MaThamGia" id="MaThamGia" type="text" class="input" name="MaThamGia"
+                       @Html.EditorFor(model => model.MaThamGia, new { htmlAttributes = new { @class = "input" } })
+                       @Html.ValidationMessageFor(model => model.MaThamGia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+      
+        <a href="@Url.Action("QuanLyDoi", "QuanLy")" class="group">
+            <input type="submit" class="button" value="Tham Gia">
+        </a>
+
+    </div>
+
+}

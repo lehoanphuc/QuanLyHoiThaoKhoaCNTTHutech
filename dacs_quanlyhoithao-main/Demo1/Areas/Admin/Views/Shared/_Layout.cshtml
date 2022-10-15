@@ -1,0 +1,1001 @@
+﻿@using Demo1.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewBag.Title</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="~/Areas/Admin/Content/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="~/Areas/Admin/Content/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <script src="~/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: 'textarea' })</script>
+</head>
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul style="width:auto;" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index", "HomeAdmin")">
+                <div class="sidebar-brand-icon">
+                    @*<i class="fas fa-laugh-wink"></i>*@
+                    <img src="~/Areas/Admin/Content/img/logo_hutech.png" height="45px" width="45px" />
+                </div>
+                <div class="sidebar-brand-text mx-3">Hội Thao IT</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+
+
+            @if (Session["TENQUYEN"] != null)
+            {
+                List<string> privilegeLevels = (List<string>)Session["TENQUYEN"];
+
+                if (privilegeLevels[0].CompareTo("Quản trị viên") == 0)
+                {
+                    <!-- Nav Item - Tổng Quan -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "HomeAdmin")">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Tổng Quan</span>
+                        </a>
+                    </li>
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Danh Mục
+                    </div>
+                    <!-- Quản lý thông tin khoa-Lớp -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo0"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản Lý Thông Tin</span>
+                        </a>
+                        <div id="collapseTwo0" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("DanhSachLop","QLThongTinLop")">Quản Lý Lớp</a>
+                                <a class="collapse-item" href="@Url.Action("ListDieuLe", "QLDieuLe")">Quản Lý Điều Lệ</a>
+
+
+                                @*<a class="collapse-item" href="@Url.Action("CauLongAdmin", "BoMonThiDauAdmin")">Thêm sinh viên</a>
+                            <a class="collapse-item" href="@Url.Action("KeoCoAdmin", "BoMonThiDauAdmin")">Kéo co</a>
+                            <a class="collapse-item" href="@Url.Action("CoVua_CoTuongAdmin", "BoMonThiDauAdmin")">Cờ vua &amp; Cờ tướng</a>
+                            <a class="collapse-item" href="@Url.Action("DienKinhAdmin", "BoMonThiDauAdmin")">Điền kinh</a>*@
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Quản lý bộ môn thi đấu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản Lý Môn Thi Đấu</span>
+                        </a>
+                        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("DanhSachMonThiDau", "QLMonThiDau")">Quản Lý Môn Thi Đấu</a>
+                                <a class="collapse-item" href="@Url.Action("HuongDanDK", "QLMonThiDau")">Hướng Dẫn Đăng Ký</a>
+                                @*<a class="collapse-item" href="@Url.Action("CauLongAdmin", "BoMonThiDauAdmin")">Cầu lông</a>
+                            <a class="collapse-item" href="@Url.Action("KeoCoAdmin", "BoMonThiDauAdmin")">Kéo co</a>
+                            <a class="collapse-item" href="@Url.Action("CoVua_CoTuongAdmin", "BoMonThiDauAdmin")">Cờ vua &amp; Cờ tướng</a>
+                            <a class="collapse-item" href="@Url.Action("DienKinhAdmin", "BoMonThiDauAdmin")">Điền kinh</a>*@
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý lịch thi đấu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý lịch thi đấu</span>
+                        </a>
+                        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("LichBongDa", "LichThiDau")">Bóng đá</a>
+                                <a class="collapse-item" href="@Url.Action("LichBongChuyen", "LichThiDau")">Bóng chuyền</a>
+                                <a class="collapse-item" href="@Url.Action("LichCauLong", "LichThiDau")">Cầu lông</a>
+                                <a class="collapse-item" href="@Url.Action("LichKeoCo", "LichThiDau")">Kéo co</a>
+                                <a class="collapse-item" href="@Url.Action("LichCoVua_CoTuong", "LichThiDau")">Cờ vua &amp; Cờ tướng</a>
+                                <a class="collapse-item" href="@Url.Action("LichDienKinh", "LichThiDau")">Điền kinh</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý lệ phí hội thao -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý lệ phí hội thao</span>
+                        </a>
+                        <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("DanhSachLePhi", "QLDangKy")">Danh Sách Đóng Lệ Phí</a>
+                                @*<a class="collapse-item" href="@Url.Action("LPBongDa", "LePhiHoiThao")">Bóng đá</a>
+                            <a class="collapse-item" href="@Url.Action("LPBongChuyen", "LePhiHoiThao")">Bóng chuyền</a>
+                            <a class="collapse-item" href="@Url.Action("LPCauLong", "LePhiHoiThao")">Cầu lông</a>
+                            <a class="collapse-item" href="@Url.Action("LPKeoCo", "LePhiHoiThao")">Kéo co</a>
+                            <a class="collapse-item" href="@Url.Action("LPCoVua_CoTuong", "LePhiHoiThao")">Cờ vua &amp; Cờ tướng</a>
+                            <a class="collapse-item" href="@Url.Action("LPDienKinh", "LePhiHoiThao")">Điền kinh</a>*@
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý kết quả hội thao -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý kết quả thi đấu</span>
+                        </a>
+                        <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("KQBongDa", "KetQuaHoiThao")">Bóng đá</a>
+                                <a class="collapse-item" href="@Url.Action("KQBongChuyen", "KetQuaHoiThao")">Bóng chuyền</a>
+                                <a class="collapse-item" href="@Url.Action("KQCauLong", "KetQuaHoiThao")">Cầu lông</a>
+                                <a class="collapse-item" href="@Url.Action("KQKeoCo", "KetQuaHoiThao")">Kéo co</a>
+                                <a class="collapse-item" href="@Url.Action("KQCoVua_CoTuong", "KetQuaHoiThao")">Cờ vua &amp; Cờ tướng</a>
+                                <a class="collapse-item" href="@Url.Action("KQDienKinh", "KetQuaHoiThao")">Điền kinh</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý Đăng Ký -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo5"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý đăng ký</span>
+                        </a>
+                        <div id="collapseTwo5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("DangKyTaiKhoan", "QLDangKy")">Đăng Ký Tài Khoản</a>
+                                <a class="collapse-item" href="@Url.Action("DanhSachDangKy", "QLDangKy")">Đăng Ký Hội Thao</a>
+
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Quản lý Giao Diện -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo6"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý giao diện</span>
+                        </a>
+                        <div id="collapseTwo6" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("ThanhMenuTop", "QLGiaoDien")">Giao Diện Menu Top</a>
+                                @*<a class="collapse-item" href="@Url.Action("DangKyHoiThao", "QLGiaoDien")">Đăng Ký Hội Thao</a>*@
+
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <!-- Quản lý tài khoản -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                           aria-expanded="true" aria-controls="collapsePages">
+                            <i class="fas fa-fw fa-user"></i>
+                            <span>Tài Khoản</span>
+                        </a>
+                        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("Index", "TaiKhoanAdmin")">Quản lý tài khoản</a>
+                                <a class="collapse-item" href="@Url.Action("Index", "PhanQuyen")">Phân quyền tài khoản</a>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider d-none d-md-block">
+                    <!-- Sidebar Toggler (Sidebar) -->
+                    <div class="text-center d-none d-md-inline">
+                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    </div>
+                }
+
+                if (privilegeLevels[0].CompareTo("Ban chấp hành") == 0)
+                {
+                    <!-- Nav Item - Tổng Quan -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "HomeAdmin")">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Tổng Quan</span>
+                        </a>
+                    </li>
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Danh Mục
+                    </div>
+                    <!-- Quản lý thông tin khoa-Lớp -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo0"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản Lý Thông Tin</span>
+                        </a>
+                        <div id="collapseTwo0" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("DanhSachLop","QLThongTinLop")">Quản Lý Lớp</a>
+                                <a class="collapse-item" href="@Url.Action("ListDieuLe", "QLDieuLe")">Quản Lý Điều Lệ</a>
+
+
+                                @*<a class="collapse-item" href="@Url.Action("CauLongAdmin", "BoMonThiDauAdmin")">Thêm sinh viên</a>
+                            <a class="collapse-item" href="@Url.Action("KeoCoAdmin", "BoMonThiDauAdmin")">Kéo co</a>
+                            <a class="collapse-item" href="@Url.Action("CoVua_CoTuongAdmin", "BoMonThiDauAdmin")">Cờ vua &amp; Cờ tướng</a>
+                            <a class="collapse-item" href="@Url.Action("DienKinhAdmin", "BoMonThiDauAdmin")">Điền kinh</a>*@
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Quản lý bộ môn thi đấu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản Lý Môn Thi Đấu</span>
+                        </a>
+                        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("DanhSachMonThiDau", "QLMonThiDau")">Quản Lý Môn Thi Đấu</a>
+                                <a class="collapse-item" href="@Url.Action("HuongDanDK", "QLMonThiDau")">Hướng Dẫn Đăng Ký</a>
+                                @*<a class="collapse-item" href="@Url.Action("CauLongAdmin", "BoMonThiDauAdmin")">Cầu lông</a>
+                            <a class="collapse-item" href="@Url.Action("KeoCoAdmin", "BoMonThiDauAdmin")">Kéo co</a>
+                            <a class="collapse-item" href="@Url.Action("CoVua_CoTuongAdmin", "BoMonThiDauAdmin")">Cờ vua &amp; Cờ tướng</a>
+                            <a class="collapse-item" href="@Url.Action("DienKinhAdmin", "BoMonThiDauAdmin")">Điền kinh</a>*@
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý lịch thi đấu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý lịch thi đấu</span>
+                        </a>
+                        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("LichBongDa", "LichThiDau")">Bóng đá</a>
+                                <a class="collapse-item" href="@Url.Action("LichBongChuyen", "LichThiDau")">Bóng chuyền</a>
+                                <a class="collapse-item" href="@Url.Action("LichCauLong", "LichThiDau")">Cầu lông</a>
+                                <a class="collapse-item" href="@Url.Action("LichKeoCo", "LichThiDau")">Kéo co</a>
+                                <a class="collapse-item" href="@Url.Action("LichCoVua_CoTuong", "LichThiDau")">Cờ vua &amp; Cờ tướng</a>
+                                <a class="collapse-item" href="@Url.Action("LichDienKinh", "LichThiDau")">Điền kinh</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    
+
+                    <!-- Quản lý kết quả hội thao -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý kết quả thi đấu</span>
+                        </a>
+                        <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("KQBongDa", "KetQuaHoiThao")">Bóng đá</a>
+                                <a class="collapse-item" href="@Url.Action("KQBongChuyen", "KetQuaHoiThao")">Bóng chuyền</a>
+                                <a class="collapse-item" href="@Url.Action("KQCauLong", "KetQuaHoiThao")">Cầu lông</a>
+                                <a class="collapse-item" href="@Url.Action("KQKeoCo", "KetQuaHoiThao")">Kéo co</a>
+                                <a class="collapse-item" href="@Url.Action("KQCoVua_CoTuong", "KetQuaHoiThao")">Cờ vua &amp; Cờ tướng</a>
+                                <a class="collapse-item" href="@Url.Action("KQDienKinh", "KetQuaHoiThao")">Điền kinh</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý Đăng Ký -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo5"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý đăng ký</span>
+                        </a>
+                        <div id="collapseTwo5" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("DangKyTaiKhoan", "QLDangKy")">Đăng Ký Tài Khoản</a>
+                                <a class="collapse-item" href="@Url.Action("DanhSachDangKy", "QLDangKy")">Đăng Ký Hội Thao</a>
+
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider d-none d-md-block">
+                    <!-- Sidebar Toggler (Sidebar) -->
+                    <div class="text-center d-none d-md-inline">
+                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    </div>
+                }
+
+                if (privilegeLevels[0].CompareTo("Cộng tác viên bóng đá") == 0)
+                {
+                    <!-- Nav Item - Tổng Quan -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "HomeAdmin")">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Tổng Quan</span>
+                        </a>
+                    </li>
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Danh Mục
+                    </div>
+
+                    <!-- Quản lý bộ môn thi đấu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý bộ môn thi đấu</span>
+                        </a>
+                        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("BongDaAdmin", "BoMonThiDauAdmin")">Bóng đá</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý lịch thi đấu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý lịch thi đấu</span>
+                        </a>
+                        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("LichBongDa", "LichThiDau")">Bóng đá</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý lệ phí hội thao -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý lệ phí hội thao</span>
+                        </a>
+                        <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("LPBongDa", "LePhiHoiThao")">Bóng đá</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý kết quả hội thao -->
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý kết quả thi đấu</span>
+                        </a>
+                        <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("KQBongDa", "KetQuaHoiThao")">Bóng đá</a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Divider -->
+                    <hr class="sidebar-divider d-none d-md-block">
+                    <!-- Sidebar Toggler (Sidebar) -->
+                    <div class="text-center d-none d-md-inline">
+                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    </div>
+                }
+
+                if (privilegeLevels[0].CompareTo("Cộng tác viên bóng chuyền") == 0)
+
+                {
+                    <!-- Nav Item - Tổng Quan -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "HomeAdmin")">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Tổng Quan</span>
+                        </a>
+                    </li>
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Danh Mục
+                    </div>
+
+                    <!-- Quản lý bộ môn thi đấu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý bộ môn thi đấu</span>
+                        </a>
+                        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("BongChuyenAdmin", "BoMonThiDauAdmin")">Bóng chuyền</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý lịch thi đấu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý lịch thi đấu</span>
+                        </a>
+                        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("LichBongChuyen", "LichThiDau")">Bóng chuyền</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý lệ phí hội thao -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý lệ phí hội thao</span>
+                        </a>
+                        <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("LPBongChuyen", "LePhiHoiThao")">Bóng chuyền</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý kết quả hội thao -->
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý kết quả thi đấu</span>
+                        </a>
+                        <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("KQBongChuyen", "KetQuaHoiThao")">Bóng chuyền</a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Divider -->
+                    <hr class="sidebar-divider d-none d-md-block">
+                    <!-- Sidebar Toggler (Sidebar) -->
+                    <div class="text-center d-none d-md-inline">
+                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    </div>
+                }
+
+                if (privilegeLevels[0].CompareTo("Cộng tác viên cầu lông") == 0)
+
+                {
+                    <!-- Nav Item - Tổng Quan -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "HomeAdmin")">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Tổng Quan</span>
+                        </a>
+                    </li>
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Danh Mục
+                    </div>
+
+                    <!-- Quản lý bộ môn thi đấu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý bộ môn thi đấu</span>
+                        </a>
+                        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("CauLongAdmin", "BoMonThiDauAdmin")">Cầu lông</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý lịch thi đấu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý lịch thi đấu</span>
+                        </a>
+                        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("LichCauLong", "LichThiDau")">Cầu lông</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý lệ phí hội thao -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý lệ phí hội thao</span>
+                        </a>
+                        <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("LPCauLong", "LePhiHoiThao")">Cầu lông</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý kết quả hội thao -->
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý kết quả thi đấu</span>
+                        </a>
+                        <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("KQCauLong", "KetQuaHoiThao")">Cầu lông</a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Divider -->
+                    <hr class="sidebar-divider d-none d-md-block">
+                    <!-- Sidebar Toggler (Sidebar) -->
+                    <div class="text-center d-none d-md-inline">
+                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    </div>
+                }
+
+                if (privilegeLevels[0].CompareTo("Cộng tác viên kéo co") == 0)
+
+                {
+                    <!-- Nav Item - Tổng Quan -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "HomeAdmin")">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Tổng Quan</span>
+                        </a>
+                    </li>
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Danh Mục
+                    </div>
+
+                    <!-- Quản lý bộ môn thi đấu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý bộ môn thi đấu</span>
+                        </a>
+                        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("KeoCoAdmin", "BoMonThiDauAdmin")">Kéo co</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý lịch thi đấu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý lịch thi đấu</span>
+                        </a>
+                        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("LichKeoCo", "LichThiDau")">Kéo co</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý lệ phí hội thao -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý lệ phí hội thao</span>
+                        </a>
+                        <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("LPKeoCo", "LePhiHoiThao")">Kéo co</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý kết quả hội thao -->
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý kết quả thi đấu</span>
+                        </a>
+                        <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("KQKeoCo", "KetQuaHoiThao")">Kéo co</a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Divider -->
+                    <hr class="sidebar-divider d-none d-md-block">
+                    <!-- Sidebar Toggler (Sidebar) -->
+                    <div class="text-center d-none d-md-inline">
+                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    </div>
+                }
+
+                if (privilegeLevels[0].CompareTo("Cộng tác viên cờ vua cờ tướng") == 0)
+
+                {
+                    <!-- Nav Item - Tổng Quan -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "HomeAdmin")">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Tổng Quan</span>
+                        </a>
+                    </li>
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Danh Mục
+                    </div>
+
+                    <!-- Quản lý bộ môn thi đấu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý bộ môn thi đấu</span>
+                        </a>
+                        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("CoVua_CoTuongAdmin", "BoMonThiDauAdmin")">Cờ vua &amp; Cờ tướng</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý lịch thi đấu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý lịch thi đấu</span>
+                        </a>
+                        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("LichCoVua_CoTuong", "LichThiDau")">Cờ vua &amp; Cờ tướng</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý lệ phí hội thao -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý lệ phí hội thao</span>
+                        </a>
+                        <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("LPCoVua_CoTuong", "LePhiHoiThao")">Cờ vua &amp; Cờ tướng</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý kết quả hội thao -->
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý kết quả thi đấu</span>
+                        </a>
+                        <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("KQCoVua_CoTuong", "KetQuaHoiThao")">Cờ vua &amp; Cờ tướng</a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Divider -->
+                    <hr class="sidebar-divider d-none d-md-block">
+                    <!-- Sidebar Toggler (Sidebar) -->
+                    <div class="text-center d-none d-md-inline">
+                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    </div>
+                }
+
+                if (privilegeLevels[0].CompareTo("Cộng tác viên điền kinh") == 0)
+
+                {
+                    <!-- Nav Item - Tổng Quan -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "HomeAdmin")">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Tổng Quan</span>
+                        </a>
+                    </li>
+
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Danh Mục
+                    </div>
+
+                    <!-- Quản lý bộ môn thi đấu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo1"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý bộ môn thi đấu</span>
+                        </a>
+                        <div id="collapseTwo1" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("DienKinhAdmin", "BoMonThiDauAdmin")">Điền kinh</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý lịch thi đấu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo2"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý lịch thi đấu</span>
+                        </a>
+                        <div id="collapseTwo2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("LichDienKinh", "LichThiDau")">Điền kinh</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý lệ phí hội thao -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo3"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý lệ phí hội thao</span>
+                        </a>
+                        <div id="collapseTwo3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("LPDienKinh", "LePhiHoiThao")">Điền kinh</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Quản lý kết quả hội thao -->
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo4"
+                           aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-bars"></i>
+                            <span>Quản lý kết quả thi đấu</span>
+                        </a>
+                        <div id="collapseTwo4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Các thành phần:</h6>
+                                <a class="collapse-item" href="@Url.Action("KQDienKinh", "KetQuaHoiThao")">Điền kinh</a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Divider -->
+                    <hr class="sidebar-divider d-none d-md-block">
+                    <!-- Sidebar Toggler (Sidebar) -->
+                    <div class="text-center d-none d-md-inline">
+                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    </div>
+                }
+
+            }
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-gradient-primary topbar mb-4 static-top shadow">
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @if (Session["TENQUYEN"] != null)
+                                {
+                                    List<string> privilegeLevels = (List<string>)Session["TENQUYEN"];
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">@privilegeLevels[0]</span>
+                                }
+
+                                <img class="img-profile rounded-circle"
+                                     src="~/Areas/Admin/Content/img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                 aria-labelledby="userDropdown">
+                                @using (Html.BeginForm())
+                                {
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Thông tin cá nhân
+                                    </a>
+                                }
+
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Cài đặt
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.Action("Login", "LoginAdmin")" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Đăng xuất
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+                <!-- Begin Page Content -->
+
+                <div class="container-fluid">
+
+                    <div>
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Đồ án cơ sở 2022</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Đăng Xuất?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Chọn "Đăng Xuất" bên dưới nếu bạn muốn kết thúc phiên hiện tại.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
+                    <a class="btn btn-primary" href="@Url.Action("Login", "LoginAdmin")">Đăng Xuất</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/Areas/Admin/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Areas/Admin/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/Areas/Admin/Content/vendor/jquery-easing/jquery.easing.compatibility.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Areas/Admin/Content/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="~/Areas/Admin/Content/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="~/Areas/Admin/Content/js/chart-area-demo.js"></script>
+    <script src="~/Areas/Admin/Content/js/chart-pie-demo.js"></script>
+
+    @RenderSection("scripts", required: false)
+    @RenderSection("upload", required: false)
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+﻿@model Demo1.Models.USERADMIN
+
+@{
+    ViewBag.Title = "Đăng nhập admin";
+    Layout = null;
+}
+
+
+
+<link href="~/Areas/Admin/Content/css/StyleLogin.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<head>
+    <title>Login Admin</title>
+</head>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="~/Areas/Admin/Content/img/logo_hutech.png" id="icon" alt="User Icon" />
+            <h1>Login Admin</h1>
+        </div>
+        <h5 style="color:red; text-align:center"> @ViewBag.ThongBao @ViewData["Error1"]  </h5>
+
+        @using (Html.BeginForm("Login", "LoginAdmin", FormMethod.Post, new { id = "formInput", @class = "form-control" }))
+        {
+            @Html.AntiForgeryToken()
+            <div>
+                <div>
+                    <div class="col-md-10">
+                        <input placeholder="Tên đăng nhập" @*id="MSSV"  name="MSSV"*@ value="@ViewBag.username" required name="username"
+                               @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @id = "login", @class = "fadeIn second" } })
+
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-md-10">
+                        <input type="password" placeholder="Mật khẩu" @*id="PASS" name="PASS"*@ value="@ViewBag.password" required name="password"
+                               @Html.EditorFor(model => model.Pass, new { htmlAttributes = new { @id = "password", @class = "fadeIn third" } })
+
+                    </div>
+                </div>
+                <div>
+                    <a href="#"><input type="submit" class="fadeIn fourth" value="Đăng nhập" /></a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

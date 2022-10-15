@@ -1,0 +1,88 @@
+﻿@using Demo1.Models
+@{
+    ViewBag.Title = "ChiTietDoi";
+    Layout = "~/Views/Shared/_LayoutTeam.cshtml";
+}
+
+<div>
+    <div class="box">
+        <h2 style="text-align:center; color: black; margin-top:10px">Quản Lý Đội</h2>
+        <p>
+            <a class="btn btn-primary" href="@Url.Action("DangKyHoiThao","QuanLy")" style=" margin-left: 16px">Đăng Ký Hội Thao</a>        
+        </p>
+
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table id="example2" class="table table-bordered table-hover">
+                <thead style="color:black; text-align:center">
+                    <tr>
+                        <th>
+                            Tên Thành Viên
+                        </th>
+                        <th>
+                            Lớp
+                        </th>
+                        <th>
+                            Ngày Tham Gia Đội
+                        </th>
+                        <th>
+                            Trạng Thái
+                        </th>
+                        <th>
+                            Tác Vụ
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr style="color:black; text-align:center">
+                            <td>
+                             
+                                @item.DOI.USER.Ten
+                            </td>
+                            <td>
+                                @item.DOI.USER.LOP.TenLop
+                            </td>
+                            <td>
+
+                                @item.NgayThamGia
+
+                            </td>
+                            <td>
+                                @if (item.TrangThai == 1)
+                                {
+                                    <p>Đang Hoạt Động</p>
+                                }
+                
+                            </td>
+                            <td>
+                                @if (Session["TaiKhoanSV"] != null)
+                                {
+                                    USER user = (USER)Session["TaiKhoanSV"];
+                                    if (user.MaSo == item.DOI.MaSo)
+                                    {
+                                        <a class="btn btn-primary" style="font-size:10px;" href="#" onclick="if (confirm('Bạn có chắc chắn muốn xoá thành viên này khỏi đội không?') == true) { location.href = '/QuanLy/XoaThanhVien?id=@item.ID' }"><i class="fa fa-fw fa-trash "></i></a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-danger" style="font-size:10px;" href="@Url.Action("ChiTietDoi", new { id = item.ID })"><i class="fa fa-fw fa-list"></i></a>
+                                    }
+                                }
+
+
+                            </td>
+
+                        </tr>
+
+
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+
+

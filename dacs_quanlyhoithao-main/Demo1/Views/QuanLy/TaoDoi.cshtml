@@ -1,0 +1,41 @@
+﻿@model Demo1.Models.DOI
+@{
+    ViewBag.Title = "TaoDoi";
+    Layout = "~/Views/Shared/_LayoutTeam.cshtml";
+}
+
+@using (Html.BeginForm("TaoDoi", "QuanLy", FormMethod.Post, new { id = "formInput1" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4 style="text-align:center">Tạo Đội</h4>
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label style="margin-left:13px">Tên Dội</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenDoi, new { htmlAttributes = new { @style = "width:600px", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenDoi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label style="margin-left:13px">Môn Thi Đấu</label>
+            <div class="col-md-10">
+                @Html.DropDownList("MaMon", null, htmlAttributes: new { @style="width:400px", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+                <a class="btn btn-primary" href="@Url.Action("QuanLyDoi","QuanLy")" style=" margin-left: 16px">Trở Về</a>
+            </div>
+        </div>
+
+    </div>
+}

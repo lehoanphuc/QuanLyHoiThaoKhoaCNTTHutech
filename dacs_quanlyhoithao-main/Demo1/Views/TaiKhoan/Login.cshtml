@@ -1,0 +1,62 @@
+﻿@model Demo1.Models.USER
+
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = null;
+}
+<link href="~/Content/styleLogin.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Đăng nhập</label>
+        <input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab">Quên mật khẩu</label>
+        <div class="login-form">
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="sign-in-htm">
+                    <div class="group">
+                        <div class="col-md-10">
+                            <input placeholder="MaSo" id="MaSo" type="number" class="input" name="MaSo"
+                                   @Html.EditorFor(model => model.MaSo, new { htmlAttributes = new { @class = "input" } })
+                                   @Html.ValidationMessageFor(model => model.MaSo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="group">
+                        <div class="col-md-10">
+                            <input placeholder="Mật khẩu" id="Pass" type="password" class="input" name="Pass"
+                                   @Html.EditorFor(model => model.Pass, new { htmlAttributes = new { } })
+                                   @Html.ValidationMessageFor(model => model.Pass, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <a href="" class="group">
+                        <input type="submit" class="button" value="Đăng nhập">
+                    </a>
+                    <div style="margin-top:10px; text-align:center" class="group">
+                        @Html.ActionLink("Đăng ký", "Register")
+                    </div>
+
+                    <div class="hr"></div>
+                    <h5 style="color:white; text-align:center"> @ViewBag.ThongBao</h5>
+
+                </div>
+
+            }
+        <div class="for-pwd-htm">
+
+            <div class="group">
+            <input placeholder="Tên đăng nhập hoặc MSSV" id="user" type="text" class="input">
+        </div>
+        <a href="@Url.Action("TrangChu","Home")" class="group">
+            <input type="submit" class="button" value="Gửi xác nhận">
+        </a>
+            <div class="hr"></div>
+        </div>
+        </div>
+    </div>
+</div>

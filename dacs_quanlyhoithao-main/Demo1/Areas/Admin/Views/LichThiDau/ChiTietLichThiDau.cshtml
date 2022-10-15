@@ -1,0 +1,181 @@
+﻿@using Demo1.Models
+
+@{
+    ViewBag.Title = "Chi tiết bảng đấu";
+}
+@*<link href="~/Content/css1.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />*@
+<div>
+    <div class="box">
+        <h2 style="text-align:center; color: black; margin-top:10px">Quản Lý Bảng Đấu</h2>
+        <p>
+            <a class="btn btn-primary" href="@Url.Action("TaoBangDau","LichThiDau")" style=" margin-left: 16px">Thêm bảng đấu mới</a>
+        </p>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-hover">
+                <thead style="color:black; text-align:center">
+                    <div class="group">
+                        @ViewData["CheckBangDau"]
+                    </div>
+                    <tr>
+                        <th>
+                            Tên Bảng đấu
+                        </th>
+                        <th>
+                            Tên đội
+                        </th>
+
+                        <th>
+                            Trận
+                        </th>
+                        <th>
+                            Thắng
+                        </th>
+                        <th>
+                            Hoà
+                        </th>
+                        <th>
+                            Thua
+                        </th>
+                        <th>
+                            Số bàn thắng
+                        </th>
+                        <th>
+                            Số bàn thua
+                        </th>
+
+                        <th>
+                            Hiệu số
+                        </th>
+                        <th>
+                            Điểm
+                        </th>
+                        <th>
+                            Lỗi
+                        </th>
+                        <th>
+                            Tác vụ
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr style="color:black; text-align:center">
+                            <td>
+                                @item.BANGDAU.TenBangDau
+                            </td>
+                            <td>
+                                @item.DOI.TenDoi
+                            </td>
+                            <td>
+                                @if (@item.Tran == null)
+                                {
+                                    <h6>CXĐ</h6>
+                                }
+                                else
+                                {
+                                    @item.Tran
+                                }
+                            </td>
+                            <td>
+                                @if (@item.Thang == null)
+                                {
+                                    <h6>CXĐ</h6>
+                                }
+                                else
+                                {
+                                    @item.Thang
+                                }
+
+                            </td>
+                            <td>
+                                @if (@item.Hoa == null)
+                                {
+                                    <h6>CXĐ</h6>
+                                }
+                                else
+                                {
+                                    @item.Hoa
+                                }
+
+                            </td>
+                            <td>
+                                @if (@item.Thua == null)
+                                {
+                                    <h6>CXĐ</h6>
+                                }
+                                else
+                                {
+                                    @item.Thua
+                                }
+
+                            </td>
+                            <td>
+                                @if (@item.BanThang == null)
+                                {
+                                    <h6>CXĐ</h6>
+                                }
+                                else
+                                {
+                                    @item.BanThang
+                                }
+
+                            </td>
+                            <td>
+                                @if (@item.BanThua == null)
+                                {
+                                    <h6>CXĐ</h6>
+                                }
+                                else
+                                {
+                                    @item.BanThua
+                                }
+
+                            </td>
+                            <td>
+                                @if (@item.HieuSo == null)
+                                {
+                                    <h6>CXĐ</h6>
+                                }
+                                else
+                                {
+                                    @item.HieuSo
+                                }
+
+                            </td>
+                            <td>
+                                @if (@item.Diem == null)
+                                {
+                                    <h6>CXĐ</h6>
+                                }
+                                else
+                                {
+                                    @item.Diem
+                                }
+
+                            </td>
+                            <td>
+                                @if (@item.Loi == null)
+                                {
+                                    <h6>CXĐ</h6>
+                                }
+                                else
+                                {
+                                    @item.Loi
+                                }
+
+                            <td>
+                                <a class="btn btn-primary" style="font-size: 10px;" href="@Url.Action("Edit", new { id = item.MaBangDau })"><i class="fa fa-fw fa-pen"></i></a>
+                                <a class="btn btn-danger" style="font-size:10px;" href="@Url.Action("Delete", new { id = item.MaBangDau })"><i class="fa fa-fw fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+

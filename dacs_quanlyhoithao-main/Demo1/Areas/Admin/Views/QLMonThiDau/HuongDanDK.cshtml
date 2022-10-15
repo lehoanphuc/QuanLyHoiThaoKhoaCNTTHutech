@@ -1,0 +1,55 @@
+﻿@using Demo1.Models
+@{
+    ViewBag.Title = "HuongDanDK";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <div class="box">
+        <h2 style="text-align:center; color: black; margin-top:10px">Quản Lý Hướng Dẫn</h2>
+
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table id="example2" class="table table-bordered table-hover">
+                <thead style="color:black; text-align:center">
+                    <tr>
+                        <th>
+                            Tên Môn
+                        </th>
+                        <th>
+                            Trạng Thái
+                        </th>
+                        <th>
+                            Tác Vụ
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr style="color:black; text-align:center">
+                            <td>
+                                <p>Hướng Dẫn Môn @item.TenMon</p>
+                            </td>
+                            <td>
+                                @if (item.TrangThai == 1)
+                                {
+                                    <p>Hiện</p>
+                                }
+                                else
+                                {
+                                    <p>Ẩn</p>
+                                }
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("SuaHuongDan", new { id = item.MaMon })"><i class="fa fa-fw fa-pen "></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>

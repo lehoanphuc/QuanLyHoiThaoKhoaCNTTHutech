@@ -1,0 +1,105 @@
+﻿@model Demo1.Models.CHITIETBANGDAU
+
+@{
+    ViewBag.Title = "Cập nhật thông tin Đội đấu";
+}
+
+<h2 style="text-align:center">CHỈNH SỬA THÔNG TIN BẢNG ĐẤU</h2>
+
+@using (Html.BeginForm())
+{
+    
+    <div class="form-horizontal">
+        
+        <hr />
+        <h4 style="text-align:center; color:blue">Cập nhật thông tin cho @Html.DisplayFor(m => m.DOI.TenDoi) thuộc @Html.DisplayFor(m => m.BANGDAU.TenBangDau)</h4>
+        <h5 style="text-align:center; color:red">
+            @ViewData["CheckDoi"]
+            @ViewData["CheckEmpty"]
+            @ViewData["Check<0"]
+        </h5>
+        <div class="column">
+            <div style="width:80%" class="form-group">
+                <p>
+                    Số trận đã thi đấu: @Html.EditorFor(model => model.Tran, new { htmlAttributes = new { @class = "form-control" } })
+                </p>
+            </div>
+
+            <div style="width:80%" class="form-group">
+                <p>
+                    Số trận Thắng: @Html.EditorFor(model => model.Thang, new { htmlAttributes = new { @class = "form-control" } })
+                </p>
+            </div>
+
+            <div style="width:80%" class="form-group">
+                <p>
+                    Số trận Hoà: @Html.EditorFor(model => model.Hoa, new { htmlAttributes = new { @class = "form-control" } })
+                </p>
+            </div>
+
+            <div style="width:80%" class="form-group">
+                <p>
+                    Số trận Thua: @Html.EditorFor(model => model.Thua, new { htmlAttributes = new { @class = "form-control" } })
+                </p>
+            </div>
+
+            <div style="width:80%" class="form-group">
+                <p>
+                    Số bàn thắng: @Html.EditorFor(model => model.BanThang, new { htmlAttributes = new { @class = "form-control" } })
+                </p>
+            </div>
+
+            
+        </div>
+        
+        <div class="column">
+            <div style="width:80%" class="form-group">
+                <p>
+                    Số bàn thua: @Html.EditorFor(model => model.BanThua, new { htmlAttributes = new { @class = "form-control" } })
+                </p>
+            </div>
+            <div style="width:80%" class="form-group">
+                <p>
+                    Hiệu số bàn thắng: @Html.EditorFor(model => model.HieuSo, new { htmlAttributes = new { @class = "form-control" } })
+                </p>
+            </div>
+
+            <div style="width:80%" class="form-group">
+                <p>
+                    Điểm: @Html.EditorFor(model => model.Diem, new { htmlAttributes = new { @class = "form-control" } })
+                </p>
+            </div>
+
+            <div style="width:80%" class="form-group">
+                <p>
+                    Số Lỗi đã mắc: @Html.EditorFor(model => model.Loi, new { htmlAttributes = new { @class = "form-control" } })
+                </p>
+            </div>
+            <div class="form-group">
+                <div>
+                    <input type="submit" value="Cập nhật" class="btn btn-primary" />
+                    <div style="margin-bottom:20px">
+                        @Html.ActionLink("Quay lại", "ChiTietBangDau")
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+}
+
+<style>
+    .column {
+        float: left;
+        width: 50%;
+        padding: 10px;
+        height: 300px; /* Should be removed. Only for demonstration */
+    }
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+

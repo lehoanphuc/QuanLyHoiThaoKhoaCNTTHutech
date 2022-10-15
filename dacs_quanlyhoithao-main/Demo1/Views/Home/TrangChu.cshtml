@@ -1,0 +1,381 @@
+﻿@using Demo1.Models
+@{ ViewBag.Title = "Trang chủ"; }
+
+
+@section menu{
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("TrangChu","Home")">HỘI THAO IT</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    
+                    @foreach (var mon in Model)
+                    {
+                        var url = "Home" + "/" + "ChiTiet" + "/" + mon.MaMon;
+                        <li class="nav-item">
+
+                            <a href="@url" style="margin-right:20px">@mon.TenMon</a>
+                        </li>
+                    }
+                </ul>
+
+                <form class="form-inline my-2 my-lg-0">
+                    <div>
+                        @using Demo1.Models
+                        @if (Session["TaiKhoanSV"] != null)
+                        {
+                            USER USER = (USER)Session["TaiKhoanSV"];
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="" data-toggle="dropdown"
+                   role="button" aria-haspopup="true" aria-
+                   expanded="false"><h2 class="dropdown-toggle" style="color: black; margin-right: 10px; margin-top: 3px; font-size: 15px;">@USER.Ten</h2> <span class="caret"></span></a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li> <a href="@Url.Action("QuanLyDoi","QuanLy")" style="color: black;">Thông Tin Cá Nhân</a></li>
+                    <li> <a href="@Url.Action("QuanLyDoi","QuanLy")" style="color: black;">Quản Lý Đội</a></li>
+
+                    <li role="separator" class="divider"> </li>
+                    <li>
+                        <a href="@Url.Action("LogOut", "TaiKhoan")" style="color: black;">Đăng Xuất </a>
+                    </li>
+                </ul>
+            </li>
+        </ul> }
+    else
+    {
+<a href="@Url.Action("Login","TaiKhoan")" class="btn btn-primary"> Đăng nhập</a>}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hội thao Khoa Công nghệ Thông tin HUTECH</title>
+    <meta name="description" content="Với chuỗi sự kiện từ tháng 03/2021 đến tháng 04/2022, ngày hội sẽ đưa các bạn khám phá, gắn kết và tương tác với nhau bao gồm Hội thảo “Định hướng nghề IT &amp; Kỹ năng chinh phục nhà tuyển dụng”, “Tuần triển lãm thực tập/việc làm” và “Ngày hội tuyển dụng, triển lãm công nghệ”">
+    <meta name="keywords" content="hutech it, cntt hutech, khoa cntt hutech, it openday, ngay hoi cntt hutech, event it hutech, công nghệ phần mềm, phần mềm hutech, clb youthdev, youthdev hutech, youth dev, ngành cntt hutech, hutech đào tạo cntt, dev hutech, coder hutech, lập trình, học lập trình ở hutech, học it ở hutech, hutech youthdev, công nghệ thông tin, hutech it, cntt hutech, học cntt hutech, clb hutech, clb it hutech, câu lạc bộ it hutech, clb cntt hutech, hutech">
+
+    <!-- Facebook -->
+    <meta property="og:title" content="Hội thao Khoa Công nghệ Thông tin HUTECH">
+    <meta content="website" property="og:type">
+    <meta content="Với chuỗi sự kiện từ tháng 03/2021 đến tháng 04/2022, ngày hội sẽ đưa các bạn khám phá, gắn kết và tương tác với nhau bao gồm Hội thảo “Định hướng nghề IT &amp; Kỹ năng chinh phục nhà tuyển dụng”, “Tuần triển lãm thực tập/việc làm” và “Ngày hội tuyển dụng, triển lãm công nghệ”" property="og:description">
+    <meta content="Hội thao Khoa Công nghệ Thông tin HUTECH" property="og:site_name">
+    <meta property="og:image" content="/Assets/img/banner1.jpg">
+    <meta name="author" content="HUTECH YOUTHDEV">
+    <link href="/Assets/img/logo.png" rel="icon" type="image/x-icon">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+    <link href="/Content/css?v=-ZvRPXleAiRxNdM4oxcGBufuchUj5XFBBNp_u9ssXj41" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/yourcode.js"></script>
+    <link href="/Content/user_css?v=zuINjPwrq_iC7CNVEgC1SwQDXkHvYChqzdCOrCbbrTU1" rel="stylesheet">
+    <link href="~/Content/css1.css" rel="stylesheet" />
+
+    @*<style type="text/css">@font-face { font-family: Roboto; src: url("chrome-extension://mcgbeeipkmelnpldkobichboakdfaeon/css/Roboto-Regular.ttf"); }</style>*@
+</head>
+<body>
+
+    <header class="masthead">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-xl-6">
+                    <div class="text-center text-white">
+                        <!-- Page heading-->
+                        <h1 class="mb-5">HỘI THAO KHOA<br /> CÔNG NGHỆ THÔNG TIN HUTECH</h1>
+                        <hr style="height: 2px; opacity: 1">
+                        <h4>
+                            SÂN CHƠI RÈN LUYỆN SỨC KHOẺ<br>
+                            CÔNG NGHỆ THÔNG TIN HUTECH
+                        </h4>
+                        <hr style="height: 2px; opacity: 1">
+                        <h6>
+                            <p>
+                                <i></i> 05/05/2022<br>
+                                <i></i> Trường Đại học Công nghệ TP. HCM - HUTECH<br>
+                                (Trung tâm Đào tạo nhân lực Chất lượng cao - Khu Công nghệ cao TP.HCM)
+                            </p>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="video-background">
+        <div class="video-foreground">
+            <iframe src="https://www.youtube.com/embed/pQTFa8rdkJo?start=13controls=0&amp;showinfo=0&amp;rel=0&amp;autoplay=1&amp;loop=1&amp;mute=1&amp;playlist=pQTFa8rdkJo" frameborder="0" allowfullscreen=""></iframe>
+        </div>
+    </div>
+    <section class="features-icons bg-light text-center" id="about">
+        <div class="container">
+            <div id="carouselBanner" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/Assets/img/banner3.jpg" class="d-block w-100" alt="banner">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/Assets/img/banner3.jpg" class="d-block w-100" alt="banner">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/Assets/img/banner3.jpg" class="d-block w-100" alt="banner">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-target="#carouselBanner" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-target="#carouselBanner" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </button>
+            </div>
+
+            <br>
+            <h1>GIỚI THIỆU</h1>
+            <p style="text-align: justify">
+                🏅🏅Nhằm tạo một sân chơi lành mạnh và duy trì truyền thống luyện tập thể dục thể thao của sinh viên khoa Công nghệ Thông tin. Giao lưu học hỏi giữa sinh viên các lớp trong toàn Khoa, tạo sự đoàn kết, hiểu biết lẫn nhau.
+                <br />🏅🏅Và đặc biệt của Hội thao Khoa lần này là lựa chọn các sinh viên tiềm năng, những gương mặt thể thao sáng giá cho đội tuyển Khoa để tham dự Hội thao Sinh viên HUTECH 2022 (HUTECH GAMES 2022) diễn ra vào tháng 5 sắp tới. <br />
+                🏅🏅Là 1 thành viên trong gia đình Hutech - Khoa Công nghệ Thông tin chúng ta cùng theo dõi và luôn ủng hộ hết mình để Hội thao Khoa có thể diễn ra một cách ý nghĩa, đầy năng lượng và kết thúc tốt đẹp để tiếp tục hướng tới Hội thao Sinh viên HUTECH 2022 sắp tới đây 🏆🏆
+            </p>
+
+            <br>
+            <h1 style="text-align:center">ĐIỀU LỆ HỘI THAO</h1>
+            </h3>
+            <h6 style="text-align: left; line-height: 120%">
+                Điều 1: Đối tượng tham gia, nội dung thi đấu và thủ tục đăng ký<br />
+                1.1 Đối tượng tham gia:<br />
+                - Toàn thể sinh viên khoa Công nghệ Thông tin Trường Đại học HUTECH<br />
+                - Mỗi Sinh viên được quyền đăng ký tham gia nhiều nội dung thi đấu.<br /><br />
+                1.2 Các môn thi đấu: tổ chức 07 môn thi đấu gồm<br />
+                - Môn thi đấu đồng đội:<br />
+                +   Bóng đá nam (sân 5, sân 7)<br />
+                +   Bóng đá nữ (sân 5)<br />
+                +   Kéo co (nam, nữ)<br />
+                +   Bóng chuyền (nam, nữ)<br />
+                - Môn thi đấu cá nhân:<br />
+                +   Cờ vua (nam, nữ)<br />
+                +   Cờ tướng (nam,nữ)<br />
+                +   Cầu lông (đơn nam, nữ, đôi nam, đôi nữ, đôi nam nữ)<br />
+                +   Điền kinh (nam, nữ) (100m, 500m)<br /><br />
+                1.3 Thủ tục và hồ sơ tham dự<br />
+                - Tất cả các sinh viên nộp danh sách đăng ký và lệ phí các nội dung thi đấu cá nhân và tập thể tại link đăng ký BTC cung cấp.<br />
+                - Đơn đăng ký tham dự có xác nhận theo mẫu do Ban tổ chức quy định, thời gian đăng ký theo thông báo về Hội thao Khoa Công nghệ thông tin. Các hồ sơ nộp trễ hạn hay không đúng quy định coi như không hợp lệ.<br />
+                - Khi thi đấu, VĐV phải mang theo thẻ sinh viên và xuất trình thẻ khi có yêu cầu của Ban tổ chức.<br />
+                * Lưu ý: VĐV không có thẻ sinh viên sẽ bị mất quyền tham gia thi đấu<br />
+                Sinh viên đã đăng ký vui lòng xem thông báo về điều lệ và nộp lệ phí tham gia đúng hạn. Nếu không nộp lệ phí sẽ hủy tư cách tham gia hội thao.<br />
+                <br />
+                1.4 Thời hạn đăng ký và bốc thăm.<br />
+                - 	Thời hạn đăng ký: hạn chót đăng ký 24g00 ngày 20/03/2022.<br />
+                -	Thời gian bốc thăm: bốc thăm tất cả các môn nhằm vào 17h00 ngày 21/03/2022 (địa điểm sẽ thông báo cụ thể sau)<br />
+
+                <br />
+                Điều 2: Khiếu  nại và xử lý kỷ luật
+                2.1 Xử lý kỷ luật<br />
+                - Cá nhân, đơn vị gian lận về đối tượng,  hồ sơ đăng ký, vi phạm các quy định của Luật thi đấu hoặc các hành vi phi thể thao sẽ bị xử lý kỷ luật bằng các hình thức sau:<br />
+                + Tùy theo mức độ vi phạm, HLV, VĐV sẽ bị xử lý theo quy chế kỷ luật của Trường.<br />
+                + Truất quyền thi đấu các cá nhân hoặc đơn vị liên quan.<br />
+                + Không công nhận thành tích của đơn vị ở môn thể thao vi phạm.<br />
+                + Các trường hợp đi trễ sẽ bị xử thua theo Luật thi đấu của từng nội dung thi đấu.<br />
+                + Nếu trong quá trình tiến hành Giải các cá nhân, tập thể tự ý rút lui khỏi Giải sẽ không được hoàn tiền thi đấu.<br />
+                <br />2.2 Khiếu nại<br />
+                - Các khiếu nại phải thực hiện bằng văn bản do lãnh đạo đội hoặc ban huấn luyện có tên trong danh sách đăng ký của đơn vị cử đi ký tên.
+                Điều 3: Khen thưởng giải toàn đoàn
+                * Quy định tính điểm:<br />
+                - Đối với môn tập thể:<br />
+                + Lớp có đội tuyển tham gia thì sẽ được cộng 1 điểm<br />
+                - Đối với môn các nhân:<br />
+                + Mỗi lớp phải có ít nhất 10 vận động viên tham dự và đã hoàn thành phần thi thì được cộng 1 điểm.<br />
+                - Đối với thứ hạng:<br />
+                + Hạng nhất: 4 điểm<br />
+                + Hạng nhì: 3 điểm<br />
+                + Hạng ba : 2 điểm<br />
+                * Khen thưởng<br />
+                - Lớp nào có tổng số điểm cao nhất sẽ được thưởng 1.000.000đ<br />
+
+
+
+            </h6>
+
+            <hr>
+            <p>
+                Hội thao diễn ra từ ngày 15/05/2022 đến hết ngày 08/06/2022
+                <br>tại Trường Đại học Công nghệ TP. HCM - HUTECH (Trung tâm Đào tạo nhân lực Chất lượng cao - Khu Công nghệ cao TP.HCM)
+            </p>
+
+            <div class="text-center">
+                <button type="button" data-toggle="collapse" data-target="#collapseMap" aria-expanded="true" aria-controls="collapseExample" class="btn btn-outline-primary">Xem Google Map</button>
+
+            </div>
+
+            <br>
+            <div class="collapse show" id="collapseMap" style="">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1959.208918163208!2d106.784949!3d10.8557904!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175276e7ea103df%3A0xb6cf10bb7d719327!2sHUTECH%20University%20-%20E%20Campus%20(SHTP)!5e0!3m2!1svi!2s!4v1645359497173!5m2!1svi!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="call-to-action text-white text-center" id="findjob">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div class="col-xl-6">
+                    <h1 class="mb-4">
+                        Hứa hẹn sân chơi thú vị
+                        <br>Đăng ký ngay
+                    </h1>
+                    <div class="text-center">
+                        <a class="btn btn-lg btn-primary" href="/job"><i class=" fa-shake"></i> Đăng ký</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials text-center bg-white" id="news">
+        <div class="container">
+            <h1>TIN TỨC HỘI THAO</h1>
+            <div style="height:" class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card">
+                        <img src="~/Assets/img/TinTuc1.jpg" class="card-img-top" alt="“Lễ khai mạc HUTECH Games 2022 và ra mắt nhà tài trợ cho các đội thể thao HUTECH sẽ diễn ra ngày 07/5" style="height: 250px">
+                        <div class="card-body">
+                            <h5 class="card-title">Lễ khai mạc HUTECH Games 2022 và ra mắt nhà tài trợ cho các đội thể thao HUTECH sẽ diễn ra ngày 07/5</h5>
+                            <a href="https://www.hutech.edu.vn/homepage/tin-tuc/tin-hutech/14601397-le-khai-mac-hutech-games-2022-va-ra-mat-nha-tai-tro-cho-cac-doi-the-thao-hutech-se-dien-ra-ngay-075?fbclid=IwAR2qFyz31sZuDCUU52d5pIVoc26CNTEPjsxu3qj24BEqQNznpfERRzr9BmY" target="_blank" class="btn btn-sm btn-outline-primary">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="~/Assets/img/Hinh2.jpg" class="card-img-top" alt="HỘI THAO SINH VIÊN KHOA MARKETING - KINH DOANH QUỐC TẾ NĂM 2022" style="height: 250px">
+                        <div class="card-body">
+                            <h5 class="card-title">HỘI THAO SINH VIÊN KHOA MARKETING - KINH DOANH QUỐC TẾ NĂM 2022</h5>
+                            <a href="https://www.facebook.com/hutechgames/posts/1013645792589811" target="_blank" class="btn btn-sm btn-outline-primary">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <img src="~/Assets/img/Hinh3.jpg" class="card-img-top" alt="Sự kiện hội thao Khoa Công nghệ Thông tin được mong chờ đã quay trở rồi đây" style="height: 250px">
+                        <div class="card-body">
+                            <h5 class="card-title">Sự kiện hội thao Khoa Công nghệ Thông tin được mong chờ đã quay trở rồi đây</h5>
+                            <a href="https://www.facebook.com/hutechgames/posts/1014952625792461" target="_blank" class="btn btn-sm btn-outline-primary">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="showcase bg-light" id="event">
+
+
+        <div class="container-fluid p-0">
+
+            <div class="row g-0">
+                <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('../../Assets/img/BaoChi1.png');"></div>
+                <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                    <h2>Hội thao Sinh viên HUTECH 2021 trở lại với 21 nội dung thi đấu, nhận đăng ký đến 16/3</h2>
+                    <p class="lead mb-0">Trở lại vào tháng 3 này với 21 nội dung thi đấu ở 9 bộ môn</p>
+                    <hr>
+                    <p class="lead mb-0">
+                        <i></i> Đến hết ngày 16/03/2022
+                        <br>
+
+                    </p>
+                    <br>
+                    <a role="button" class="btn btn-primary" href="/job">Đăng ký tham gia</a>
+                </div>
+            </div>            <div class="row g-0">
+                <div class="col-lg-6  text-white showcase-img" style="background-image: url('../../Assets/img/BaoChi3.jpg');"></div>
+                <div class="col-lg-6  my-auto showcase-text">
+                    <h2>HỘI THAO KHOA Công nghệ Thông tin NĂM 2022</h2>
+                    <p class="lead mb-0">Hòa cùng không khí rộn ràng náo nức của các khoa viện Hutech, ngày 07/04 vừa qua khoa Công nghệ Thông tin đã khai mạc hội thao khoa nhằm tạo sân chơi bổ ích, thư giãn cho tất cả sinh viên khoa sau những giờ học tập trên lớp, nâng cao tinh thần thể thao cho tất cả sinh viên khoa Công nghệ Thông tin.</p>
+                    <hr>
+                    <p class="lead mb-0">
+                        <i></i> 28/04/2022 - 06/07/2022
+                        <br>
+
+                    </p>
+                    <br>
+                    <a role="button" class="btn btn-primary" href="/event">Đăng ký tham gia</a>
+                </div>
+            </div>
+            <div class="row g-0">
+                <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('../../Assets/img/BaoChi2.jpg');"></div>
+                <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                    <h2>Lễ khai mạc HUTECH Games 2022 và ra mắt nhà tài trợ cho các đội thể thao HUTECH sẽ diễn ra ngày 07/5</h2>
+                    <p class="lead mb-0">Sự kiện sẽ diễn ra tại Trung tâm Đào tạo Nhân lực Chất lượng cao HUTECH (TP. Thủ Đức) với sự tham dự của lãnh đạo Nhà trường, Ban tổ chức và hơn 20 đoàn thể thao sinh viên đến từ các Khoa, Viện.</p>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            <p class="lead mb-0">
+                                Tham gia trực tiếp vào <br>
+                                <i></i> 06h30 ngày 08/04/2022
+                                <br>
+                                <i></i> Trung Tâm Đào Tạo Nhân Lực Chất Lượng Cao HUTECH
+                            </p>
+                        </div>
+                        <div class="col">
+
+                            <p class="lead mb-2">
+                                Hoặc phỏng vấn online vào<i></i> 06h30 ngày 08/04/2022
+                                <br>
+                            </p>
+                            <a role="button" class="btn btn-block btn-primary" href="/interview">Đăng ký Online</a>
+
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        .logo-company {
+            max-width: 70%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-height: 100px;
+            cursor: pointer
+        }
+
+
+        .parent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 150px
+        }
+    </style>
+
+
+    <!-- Footer-->
+
+
+    <script type="text/javascript" async="" src="https://www.gstatic.com/recaptcha/releases/6pQzWaE1NP-gB4FrqRViKjM-/recaptcha__vi.js" crossorigin="anonymous" integrity="sha384-TO6vt/nE8ghFJaWbbVhiI1K1tL0tCNpV9by0kDmNhdzX/ai4ZJh2e/WOTcuqzOf6"></script>
+    <script>const _IS_LOGIN = false;</script>
+    <script src="~/Assets/img/js/user_page/studentlogin.js"></script>
+
+    <script src="/bundles/jquery?v=Hhw0srL0-4qR8srt_iy89H62uMRP16InFZyBSXo-blQ1"></script>
+
+    <script src="/bundles/bootstrap?v=ZA4h7uzWZi1XSJgibsu2YDxHuSeLAkQywKAdcpLD8lw1"></script>
+
+    <script src="/bundles/user_js?v="></script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=6Le2hPsUAAAAALzwDvu8vWcd7ImuBl_l49f927gN"></script>
+
+
+
+</body>
+

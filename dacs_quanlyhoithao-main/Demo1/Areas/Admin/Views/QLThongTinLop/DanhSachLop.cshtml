@@ -1,0 +1,80 @@
+﻿@using Demo1.Models
+@{
+    ViewBag.Title = "DanhSachLop";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="box">
+        <h2 style="text-align:center; color: black; margin-top:10px">Quản Lý Lớp</h2>
+        <p>
+            <a class="btn btn-primary" href="@Url.Action("TaoLop","QLThongTinLop")" style=" margin-left: 16px">Tạo Lớp</a>
+        </p>
+
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table id="example2" class="table table-bordered table-hover">
+                <thead style="color:black; text-align:center">
+                    <tr>
+                        <th>
+                            Tên Lớp
+                        </th>
+                        <th>
+                            Sỉ Số
+                        </th>
+                        <th>
+                            Ngày
+                        </th>
+                        <th>
+                            Trạng Thái
+                        </th>
+                        <th>
+                            Tác Vụ
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr style="color:black; text-align:center">
+                            <td>
+                                @item.TenLop
+                            </td>
+                            <td>
+                                @item.SiSo
+                            </td>
+                            <td>
+                                <p>Ngày Tạo: @item.NgayTao</p>
+                                @if (item.NgayChinhSua == null)
+                                {
+
+                                }
+                                else
+                                {
+                                    <p>Ngày Chỉnh Sửa: @item.NgayChinhSua</p>
+                                }
+                            </td>
+                            <td>
+                                @if (item.TrangThai == 1)
+                                {
+                                    <p>Đang Hoạt Động</p>
+                                }
+                                else
+                                {
+                                    <p>Ẩn</p>
+                                }
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("SuaLop", new { id = item.MaLop })"><i class="fa fa-fw fa-pen "></i></a>
+
+                            </td>
+                        </tr>
+                        @*}*@
+
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>

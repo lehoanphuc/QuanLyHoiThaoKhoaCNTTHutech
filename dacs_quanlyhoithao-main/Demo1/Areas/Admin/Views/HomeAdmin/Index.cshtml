@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@*<head>
+        <link href="~/Areas/Admin/Content/css/boxText.css" rel="stylesheet" />
+    </head>*@
+
+<h2 style="text-align:center">Trang chủ quản trị viên</h2>
+<body>
+    <h2>Trang chủ quản trị viên</h2>
+    <textarea name="contentCKEditor"></textarea>
+    <script src="~/Areas/Admin/Content/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('contentCKEditor');
+    </script>
+
+    <div class="act messageInformation">
+        <input type="button" class="active" name="post" accesskey="s" id="post" value="Gửi " onclick="document.addSubmissionForm.onsubmit();showNotif('submitnotif','post','addSubmissionForm'); document.addSubmissionForm.option.value='post'; document.addSubmissionForm.submit(); return false;">
+        <input class="disableme" type="button" name="preview" accesskey="v" id="preview" value="Xem trước " onclick="document.addSubmissionForm.onsubmit();showNotif('submitnotif','preview','addSubmissionForm');document.addSubmissionForm.option.value='preview'; document.addSubmissionForm.submit(); return false;">
+        <input class="disableme" type="button" name="save" accesskey="d" id="save" value="Lưu nháp " onclick="document.addSubmissionForm.onsubmit();showNotif('submitnotif','save','addSubmissionForm');document.addSubmissionForm.option.value='save'; document.addSubmissionForm.submit(); return false;">
+
+        <input class="disableme" type="button" name="cancel" accesskey="x" id="cancel" value="Huỷ " onclick="document.addSubmissionForm.onsubmit();document.addSubmissionForm.option.value='cancel'; document.addSubmissionForm.submit(); return false;">
+
+        <span class="messageInformation">Đừng quên lưu hoặc trình </span>
+        <span id="submitnotif" style="visibility:hidden">Xử lý ...... </span>
+    </div>
+</body>

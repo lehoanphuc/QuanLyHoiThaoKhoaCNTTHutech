@@ -1,0 +1,668 @@
+﻿
+@{
+    ViewBag.Title = "CoVua_CoTuong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hội thao Khoa Công nghệ Thông tin HUTECH</title>
+    <meta name="description" content="Với chuỗi sự kiện từ tháng 03/2021 đến tháng 04/2022, ngày hội sẽ đưa các bạn khám phá, gắn kết và tương tác với nhau bao gồm Hội thảo “Định hướng nghề IT &amp; Kỹ năng chinh phục nhà tuyển dụng”, “Tuần triển lãm thực tập/việc làm” và “Ngày hội tuyển dụng, triển lãm công nghệ”">
+    <meta name="keywords" content="hutech it, cntt hutech, khoa cntt hutech, it openday, ngay hoi cntt hutech, event it hutech, công nghệ phần mềm, phần mềm hutech, clb youthdev, youthdev hutech, youth dev, ngành cntt hutech, hutech đào tạo cntt, dev hutech, coder hutech, lập trình, học lập trình ở hutech, học it ở hutech, hutech youthdev, công nghệ thông tin, hutech it, cntt hutech, học cntt hutech, clb hutech, clb it hutech, câu lạc bộ it hutech, clb cntt hutech, hutech">
+
+    <!-- Facebook -->
+    <meta property="og:title" content="Hội thao Khoa Công nghệ Thông tin HUTECH">
+    <meta content="website" property="og:type">
+    <meta content="Với chuỗi sự kiện từ tháng 03/2021 đến tháng 04/2022, ngày hội sẽ đưa các bạn khám phá, gắn kết và tương tác với nhau bao gồm Hội thảo “Định hướng nghề IT &amp; Kỹ năng chinh phục nhà tuyển dụng”, “Tuần triển lãm thực tập/việc làm” và “Ngày hội tuyển dụng, triển lãm công nghệ”" property="og:description">
+    <meta content="Hội thao Khoa Công nghệ Thông tin HUTECH" property="og:site_name">
+    <meta property="og:image" content="/Assets/img/banner1.jpg">
+    <meta name="author" content="HUTECH YOUTHDEV">
+    <link href="/Assets/img/logo.png" rel="icon" type="image/x-icon">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+    <link href="/Content/css?v=-ZvRPXleAiRxNdM4oxcGBufuchUj5XFBBNp_u9ssXj41" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/yourcode.js"></script>
+    <link href="/Content/user_css?v=zuINjPwrq_iC7CNVEgC1SwQDXkHvYChqzdCOrCbbrTU1" rel="stylesheet">
+    <link href="~/Content/css1.css" rel="stylesheet" />
+
+    @*<style type="text/css">@font-face { font-family: Roboto; src: url("chrome-extension://mcgbeeipkmelnpldkobichboakdfaeon/css/Roboto-Regular.ttf"); }</style>*@
+</head>
+<body>
+    <section class="call-to-action text-white text-center" style=" background: lightblue url('https://file1.hutech.edu.vn/file/editor/homepage/stories/hinh208-fdg/_MG_0003.jpg') no-repeat; background-size: cover; ">
+        <div class="container position-relative">
+            <div class="row justify-content-center">
+                <div>
+                    <h1 class="mb-4">
+                        CỜ VUA VÀ CỜ TƯỚNG
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container mb-5 mt-5 pl-5 pr-5">
+        <div class="row">
+            <div class="col-12 col-md-3 bg-light p-3" style="border-radius: 5px">
+                <div class="mb-3 text-center">
+                    <a href="#clear" onclick="openCity(event, 'huongDan')"><b><i></i> DANH MỤC ĐĂNG KÝ</b></a>
+                </div>
+                <hr />
+
+                <div class="tab">
+                    <button class="btn mb-1 btn-block btn-sm btn-outline-primary filter-button tablinks active" onclick="openCity(event, 'huongDan')" id="defaultOpen">Hướng dẫn đăng ký</button>
+                    <button class="btn mb-1 btn-block btn-sm btn-outline-primary filter-button tablinks" onclick="openCity(event, 'dangKy')">Đăng ký thi đấu</button>
+                    <button class="btn mb-1 btn-block btn-sm btn-outline-primary filter-button tablinks" onclick="openCity(event, 'luatCoVua')">Điều lệ cờ vua</button>
+                    <button class="btn mb-1 btn-block btn-sm btn-outline-primary filter-button tablinks" onclick="openCity(event, 'luatCoTuong')">Điều lệ cờ tướng</button>
+                    <button class="btn mb-1 btn-block btn-sm btn-outline-primary filter-button tablinks" onclick="openCity(event, 'lichThiDau')">Lịch thi đấu</button>
+                    <button class="btn mb-1 btn-block btn-sm btn-outline-primary filter-button tablinks" onclick="openCity(event, 'ketQua')">Kết quả thi đấu</button>
+
+                </div>
+
+                <script>
+                    function openCity(evt, cityName) {
+                        var i, tabcontent, tablinks;
+                        tabcontent = document.getElementsByClassName("tabcontent");
+                        for (i = 0; i < tabcontent.length; i++) {
+                            tabcontent[i].style.display = "none";
+                        }
+                        tablinks = document.getElementsByClassName("tablinks");
+                        for (i = 0; i < tablinks.length; i++) {
+                            tablinks[i].className = tablinks[i].className.replace(" active", "");
+                        }
+                        document.getElementById(cityName).style.display = "block";
+                        evt.currentTarget.className += " active";
+                    }
+
+                    // Get the element with id="defaultOpen" and click on it
+                    document.getElementById("defaultOpen").click();
+                </script>
+
+                <style>
+
+                    /* Style the tab */
+                    .tab {
+                        float: left;
+                        border: thin;
+                        text-align: center;
+                        margin-bottom: 5px;
+                        background-color: #00000000;
+                        width: 90%;
+                        height: 200px;
+                    }
+
+                        /* Style the buttons inside the tab */
+                        .tab button {
+                            display: block;
+                            background-color: inherit;
+                            color: black;
+                            margin-bottom: 10px;
+                            width: 100%;
+                            border-radius: 7px;
+                            outline: none;
+                            text-align: center;
+                            cursor: pointer;
+                            transition: 0.3s;
+                            font-size: 17px;
+                        }
+
+                            /* Change background color of buttons on hover */
+                            .tab button:hover {
+                                background-color: #F1C40F;
+                            }
+
+                            /* Create an active/current "tab button" class */
+                            .tab button.active {
+                                background-color: #D35400;
+                            }
+
+                    /* Style the tab content */
+                    .tabcontent {
+                        float: left;
+                        padding: 0px 12px;
+                        width: 100%;
+                        border-left: none;
+                        height: auto;
+                    }
+                </style>
+
+
+            </div>
+            <div class="col-12 col-sm-9 pl-3">
+                <div id="result" class="p-3" style="">
+                    <div id="dataTable">
+                        <!--Hướng dẫn đăng ký-->
+                        <div id="huongDan" class="tabcontent active">
+                            <h1 style="text-align:center">Hướng dẫn đăng ký môn Cờ vua và Cờ tướng</h1>
+                        </div>
+
+                        <!--Đăng ký-->
+                        <div id="dangKy" class="tabcontent">
+                            <div class="card mt-4   ">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3 d-none d-md-block">
+                                            <img class="logo-company" src="~/Assets/img/covuaNam.png">
+                                        </div>
+                                        <div class="col-9 col-md-6 mb-1">
+                                            <h5 class="card-title">Cờ Vua Nam</h5>
+                                            <p class="card-text">
+                                                Sân chơi thể thao giành cho các cầu thủ <br>
+                                            </p>
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <button style="height: 40px; width: 130px; margin-top:30px;" type="button" class="btn btn-sm btn-block btn-danger" data-bs-toggle="modal" data-bs-target="#myModal1">Đăng ký</button>
+                                            <div class="modal" id="myModal1">
+                                                <div class="modal-dialog">
+                                                    <div style="width: 210%; margin-left:-60%" class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 style="text-align:center; margin-left:40%" class="modal-title">Đăng ký Cờ vua Nam</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form>
+                                                                <div style="margin-left:30%" class="mb-3">
+                                                                    <input style="width:70%" ; type="text" placeholder="Họ và tên" class="form-control">
+                                                                </div>
+                                                                <div style="margin-left:30%" class="mb-3">
+                                                                    <input style="width:70%" ; type="text" placeholder="MSSV" class="form-control">
+                                                                </div>
+                                                                <div style="margin-left:30%" class="mb-3">
+                                                                    <input style="width:70%" ; type="text" placeholder="Lớp" class="form-control">
+                                                                </div>
+                                                                <div style="margin-left:30%" class="mb-3">
+                                                                    <input style="width:70%" ; type="text" placeholder="Gmail" class="form-control">
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <style>
+                                                            * {
+                                                                box-sizing: border-box;
+                                                            }
+
+                                                            /* Create three equal columns that floats next to each other */
+                                                            .column {
+                                                                float: left;
+                                                                width: 33.33%;
+                                                                padding: 10px;
+                                                                height: 70px; /* Should be removed. Only for demonstration */
+                                                            }
+
+                                                            /* Clear floats after the columns */
+                                                            .row:after {
+                                                                content: "";
+                                                                display: table;
+                                                                clear: both;
+                                                            }
+                                                        </style>
+                                                        <div class="modal-footer">
+                                                            <h6 style="margin-left:-100px; color:darkred">Hãy chắc chắn rằng mọi thông tin bạn nhập bên trên là chính xác. Mọi sai sót, Ban tổ chức không chịu trách nhiệm.</h6>
+                                                            <button type="submit" class="btn btn-primary">Đăng ký</button>
+                                                            <button type="submit" class="btn btn-danger">Huỷ</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mt-4   ">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3 d-none d-md-block">
+                                            <img class="logo-company" src="~/Assets/img/covuaNu.png">
+                                        </div>
+                                        <div class="col-9 col-md-6 mb-1">
+                                            <h5 class="card-title">Cờ Vua Nữ</h5>
+                                            <p class="card-text">
+                                                Sân chơi thể thao giành cho các cầu thủ <br>
+                                            </p>
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <button style="height: 40px; width: 130px; margin-top:30px;" type="button" class="btn btn-sm btn-block btn-danger" data-bs-toggle="modal" data-bs-target="#myModal3">Đăng ký</button>
+                                            <div class="modal" id="myModal3">
+                                                <div class="modal-dialog">
+                                                    <div style="width: 210%; margin-left:-60%" class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 style="text-align:center; margin-left:40%" class="modal-title">Đăng ký Cờ vua Nữ</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form>
+                                                                <div style="margin-left:30%" class="mb-3">
+                                                                    <input style="width:70%" ; type="text" placeholder="Họ và tên" class="form-control">
+                                                                </div>
+                                                                <div style="margin-left:30%" class="mb-3">
+                                                                    <input style="width:70%" ; type="text" placeholder="MSSV" class="form-control">
+                                                                </div>
+                                                                <div style="margin-left:30%" class="mb-3">
+                                                                    <input style="width:70%" ; type="text" placeholder="Lớp" class="form-control">
+                                                                </div>
+                                                                <div style="margin-left:30%" class="mb-3">
+                                                                    <input style="width:70%" ; type="text" placeholder="Gmail" class="form-control">
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <style>
+                                                            * {
+                                                                box-sizing: border-box;
+                                                            }
+
+                                                            /* Create three equal columns that floats next to each other */
+                                                            .column {
+                                                                float: left;
+                                                                width: 33.33%;
+                                                                padding: 10px;
+                                                                height: 70px; /* Should be removed. Only for demonstration */
+                                                            }
+
+                                                            /* Clear floats after the columns */
+                                                            .row:after {
+                                                                content: "";
+                                                                display: table;
+                                                                clear: both;
+                                                            }
+                                                        </style>
+                                                        <div class="modal-footer">
+                                                            <h6 style="margin-left:-100px; color:darkred">Hãy chắc chắn rằng mọi thông tin bạn nhập bên trên là chính xác. Mọi sai sót, Ban tổ chức không chịu trách nhiệm.</h6>
+                                                            <button type="submit" class="btn btn-primary">Đăng ký</button>
+                                                            <button type="submit" class="btn btn-danger">Huỷ</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mt-4   ">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3 d-none d-md-block">
+                                            <img class="logo-company" src="~/Assets/img/cotuongNam.png">
+                                        </div>
+                                        <div class="col-9 col-md-6 mb-1">
+                                            <h5 class="card-title">Cờ Tướng Nam</h5>
+                                            <p class="card-text">
+                                                Sân chơi thể thao giành cho các cầu thủ <br>
+                                            </p>
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <button style="height: 40px; width: 130px; margin-top:30px;" type="button" class="btn btn-sm btn-block btn-danger" data-bs-toggle="modal" data-bs-target="#myModal2">Đăng ký</button>
+                                            <div class="modal" id="myModal2">
+                                                <div class="modal-dialog">
+                                                    <div style="width: 210%; margin-left:-60%" class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 style="text-align:center; margin-left:40%" class="modal-title">Đăng ký Cờ tướng Nam</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form>
+                                                                <div style="margin-left:30%" class="mb-3">
+                                                                    <input style="width:70%" ; type="text" placeholder="Họ và tên" class="form-control">
+                                                                </div>
+                                                                <div style="margin-left:30%" class="mb-3">
+                                                                    <input style="width:70%" ; type="text" placeholder="MSSV" class="form-control">
+                                                                </div>
+                                                                <div style="margin-left:30%" class="mb-3">
+                                                                    <input style="width:70%" ; type="text" placeholder="Lớp" class="form-control">
+                                                                </div>
+                                                                <div style="margin-left:30%" class="mb-3">
+                                                                    <input style="width:70%" ; type="text" placeholder="Gmail" class="form-control">
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <style>
+                                                            * {
+                                                                box-sizing: border-box;
+                                                            }
+
+                                                            /* Create three equal columns that floats next to each other */
+                                                            .column {
+                                                                float: left;
+                                                                width: 33.33%;
+                                                                padding: 10px;
+                                                                height: 70px; /* Should be removed. Only for demonstration */
+                                                            }
+
+                                                            /* Clear floats after the columns */
+                                                            .row:after {
+                                                                content: "";
+                                                                display: table;
+                                                                clear: both;
+                                                            }
+                                                        </style>
+                                                        <div class="modal-footer">
+                                                            <h6 style="margin-left:-100px; color:darkred">Hãy chắc chắn rằng mọi thông tin bạn nhập bên trên là chính xác. Mọi sai sót, Ban tổ chức không chịu trách nhiệm.</h6>
+                                                            <button type="submit" class="btn btn-primary">Đăng ký</button>
+                                                            <button type="submit" class="btn btn-danger">Huỷ</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mt-4   ">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3 d-none d-md-block">
+                                            <img class="logo-company" src="~/Assets/img/cotuongNu.png">
+                                        </div>
+                                        <div class="col-9 col-md-6 mb-1">
+                                            <h5 class="card-title">Cờ Tướng Nữ</h5>
+                                            <p class="card-text">
+                                                Sân chơi thể thao giành cho các cầu thủ <br>
+                                            </p>
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <button style="height: 40px; width: 130px; margin-top:30px;" type="button" class="btn btn-sm btn-block btn-danger" data-bs-toggle="modal" data-bs-target="#myModal4">Đăng ký</button>
+                                            <div class="modal" id="myModal4">
+                                                <div class="modal-dialog">
+                                                    <div style="width: 210%; margin-left:-60%" class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 style="text-align:center; margin-left:40%" class="modal-title">Đăng ký Cờ tướng Nữ</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form>
+                                                                <div style="margin-left:30%" class="mb-3">
+                                                                    <input style="width:70%" ; type="text" placeholder="Họ và tên" class="form-control">
+                                                                </div>
+                                                                <div style="margin-left:30%" class="mb-3">
+                                                                    <input style="width:70%" ; type="text" placeholder="MSSV" class="form-control">
+                                                                </div>
+                                                                <div style="margin-left:30%" class="mb-3">
+                                                                    <input style="width:70%" ; type="text" placeholder="Lớp" class="form-control">
+                                                                </div>
+                                                                <div style="margin-left:30%" class="mb-3">
+                                                                    <input style="width:70%" ; type="text" placeholder="Gmail" class="form-control">
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <style>
+                                                            * {
+                                                                box-sizing: border-box;
+                                                            }
+
+                                                            /* Create three equal columns that floats next to each other */
+                                                            .column {
+                                                                float: left;
+                                                                width: 33.33%;
+                                                                padding: 10px;
+                                                                height: 70px; /* Should be removed. Only for demonstration */
+                                                            }
+
+                                                            /* Clear floats after the columns */
+                                                            .row:after {
+                                                                content: "";
+                                                                display: table;
+                                                                clear: both;
+                                                            }
+                                                        </style>
+                                                        <div class="modal-footer">
+                                                            <h6 style="margin-left:-100px; color:darkred">Hãy chắc chắn rằng mọi thông tin bạn nhập bên trên là chính xác. Mọi sai sót, Ban tổ chức không chịu trách nhiệm.</h6>
+                                                            <button type="submit" class="btn btn-primary">Đăng ký</button>
+                                                            <button type="submit" class="btn btn-danger">Huỷ</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <!--Điều lệ hội thao-->
+                        <div id="luatCoVua" class="tabcontent">
+                            <h1 style="text-align:center">ĐIỀU LỆ THI ĐẤU MÔN CỜ VUA</h1>
+                            <h3 style="text-align:center">
+                                HỘI THAO KHOA CÔNG NGHỆ THÔNG TIN<br />
+                                NĂM HỌC 2021-2022<hr />
+                            </h3>
+                            <h6 style="text-align: justify; line-height: 120%">
+                                <h5>1. Nội dung:</h5>
+                                - Thi đấu theo hình thức cá nhân.<br />
+                                - Lệ phí đăng ký: 50,000đ/ người (Đây là tiền ký quỹ, sau khi giải kết thúc mà vđv không vi phạm điều 2 sẽ được hoàn lại).<br />
+                                <h5>2. Quy định chuyên môn:</h5>
+                                - Thi đấu loại trực tiếp<br />
+                                - Áp dụng luật cờ của FIDE, mỗi bên sử dụng 30 phút. Phạm 03 lỗi kỹ thuật sẽ bị xử thua ván cờ đó.<br />
+                                - Xếp hạng cá nhân lần lượt theo hệ số tích lũy  tiến, số ván cầm quân đen, số ván cầm quân thắng bằng quân đen, ván đối kháng, màu quân ván đối kháng, bốc thăm.<br />
+                                <h5>3. Thời gian và địa điểm thi đấu.</h5>
+                                - Thời gian thi đấu: từ 8h00 ngày 09/04/2022<br />
+                                - Yêu cầu: Hôm thi mang theo laptop<br />
+                                - Địa điểm thi đấu: Phòng sẽ được báo cụ thể sau<br />
+                                - Cơ cấu giải thưởng:<br />
+                                + 01 giải Nhất: ( huy chương)<br />
+                                + 01 giải Nhì: ( huy chương)<br />
+                                + 01 giải Ba: ( huy chương)<br />
+
+
+
+                            </h6>
+
+                        </div>
+                        <div id="luatCoTuong" class="tabcontent">
+                            <h1 style="text-align:center">ĐIỀU LỆ THI ĐẤU MÔN CỜ TƯỚNG</h1>
+                            <h3 style="text-align:center">
+                                HỘI THAO KHOA CÔNG NGHỆ THÔNG TIN<br />
+                                NĂM HỌC 2021-2022<hr />
+                            </h3>
+                            <h6 style="text-align: justify; line-height: 120%">
+                                <h5>1. Nội dung:</h5>
+                                - Thi đấu theo hình thức cá nhân.<br />
+                                - Lệ phí đăng ký: 50,000đ/ người (Đây là tiền ký quỹ, sau khi giải kết thúc mà vđv không vi phạm điều 2 sẽ được hoàn lại).<br />
+                                <h5>2. Quy định chuyên môn:</h5>
+                                - Thi đấu loại trực tiếp<br />
+                                - Áp dụng luật cờ tướng Việt Nam hiện hành, mỗi bên sử dụng 30 phút. Phạm 03 lỗi kỹ thuật sẽ bị xử thua ván cờ đó.<br />
+                                - Xếp hạng cá nhân lần lượt theo hệ số tích lũy  tiến, số ván cầm quân đen, số ván cầm quân thắng bằng quân đen, ván đối kháng, màu quân ván đối kháng, bốc thăm.<br />
+                                <h5>3. Thời gian và địa điểm thi đấu.</h5>
+                                - Thời gian thi đấu: 08h00 ngày 09/04/2022<br />
+                                - Yêu cầu: Hôm thi mang theo laptop<br />
+                                - Địa điểm thi đấu: Phòng sẽ được báo cụ thể sau<br />
+                                - Cơ cấu giải thưởng:<br />
+                                + 01 giải Nhất: ( huy chương)<br />
+                                + 01 giải Nhì: ( huy chương)<br />
+                                + 01 giải Ba: ( huy chương)<br />
+
+
+
+                            </h6>
+
+                        </div>
+
+                        <!--Lịch thi đấu-->
+                        <div id="lichThiDau" class="tabcontent">
+                            <h1 style="text-align:center">Lịch thi đấu cờ vua và cờ tướng</h1>
+                        </div>
+
+                        <!--Kết quả hội thao-->
+                        <div id="ketQua" class="tabcontent">
+                            <h1 style="text-align:center">Kết quả thi đấu môn bóng đá</h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" async="" src="https://www.gstatic.com/recaptcha/releases/nEGwmCAyCoKVn9PSwAGnQWhY/recaptcha__vi.js" crossorigin="anonymous" integrity="sha384-wVHOBMV5fALu8EvOltsX/jv+6Z+ddWOFGxUHaRMborVzIuDXm1DDQgtiN8WSp23T"></script>
+    <script>
+        const _IS_LOGIN = false;
+    </script>
+
+    <script src="/Assets/js/user_page/studentlogin.js"></script>
+
+    <!-- Modal Login -->
+    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLoginLabel">Cổng thông tin tuyển dụng</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+
+
+                <div id="loginLoading" class="text-center" style="padding-top: 60px; display: none">
+                    <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <p class="text-center">Vui lòng đợi trong giây lát</p>
+                </div>
+
+                <div class="modal-body" id="loginContent">
+
+                    <ul class="nav nav-tabs" id="loginTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="login-tab" data-toggle="tab" href="#loginContentTab" role="tab" aria-controls="home" aria-selected="true">Đăng nhập</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="reg-tab" data-toggle="tab" href="#regContentTab" role="tab" aria-controls="profile" aria-selected="false">Đăng ký</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="forgotpassword-tab" data-toggle="tab" href="#forgotpasswordContentTab" role="tab" aria-controls="forgotpassword" aria-selected="false">Quên mật khẩu</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <div class="tab-content" id="loginTabContent">
+                        <div class="tab-pane fade show active" id="loginContentTab" role="tabpanel" aria-labelledby="login-tab">
+                            <div class="form-group">
+                                <label for="loginUsername">Tài khoản hoặc MSSV</label>
+                                <input type="text" class="form-control" id="loginUsername" placeholder="Tài khoản hoặc MSSV">
+                            </div>
+                            <div class="form-group">
+                                <label for="loginPassword">Mật khẩu</label>
+                                <input type="password" class="form-control" id="loginPassword" placeholder="Mật khẩu">
+                            </div>
+                            <div class="text-right">
+                                <button type="button" class="btn btn-outline-primary" onclick="openRegTab()">Đăng ký</button>
+                                <button type="button" onclick="login()" id="loginSubmit" class="btn btn-primary">Đăng nhập</button>
+                            </div>
+                        </div>
+
+
+                        <div class="tab-pane fade" id="regContentTab" role="tabpanel" aria-labelledby="reg-tab">
+
+                            <form id="regForm">
+                                <div class="form-group">
+                                    <label for="regCode">Tài khoản hoặc MSSV</label>
+                                    <input type="text" class="form-control" id="regUsername" name="regUsername" placeholder="Tài khoản hoặc MSSV">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="regPassword">Mật khẩu</label>
+                                            <input type="password" class="form-control" id="regPassword" name="regPassword" placeholder="Mật khẩu">
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="regRePassword">Nhập lại mật khẩu</label>
+                                            <input type="password" class="form-control" id="regRePassword" name="regRePassword" placeholder="Nhập lại mật khẩu">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="regName">Họ tên</label>
+                                    <input type="text" class="form-control" onchange="autoBeautyFullname()" id="regName" name="regName" placeholder="Họ tên của bạn">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="regClass">Lớp của bạn</label>
+                                    <input type="text" class="form-control" style="text-transform: uppercase" id="regClass" name="regClass" placeholder="Lớp của bạn">
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="regEmail">Email</label>
+                                            <input type="email" class="form-control" id="regEmail" name="regEmail" placeholder="Email của bạn">
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="regPhone">Số điện thoại</label>
+                                            <input type="text" class="form-control" id="regPhone" name="regPhone" placeholder="Số điện thoại">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">CV của bạn</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="regCV" name="regCV" accept=".pdf">
+                                        <label class="custom-file-label" for="regCV">Choose file</label>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="text-right">
+                                <button type="button" onclick="reg()" id="regSubmit" class="btn btn-primary">Đăng ký</button>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="forgotpasswordContentTab" role="tabpanel" aria-labelledby="forgotpassword-tab">
+                            <div class="form-group">
+                                <label for="forgotUsername">Tài khoản của bạn</label>
+                                <input type="text" class="form-control" id="forgotUsername" name="forgotUsername" placeholder="Tài khoản của bạn">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="forgotEmail">Email đăng ký tài khoản của bạn</label>
+                                <input type="email" class="form-control" id="forgotEmail" name="forgotEmail" placeholder="Email của bạn">
+                            </div>
+
+                            <div class="text-right">
+                                <button type="button" onclick="resetPassword()" id="resetSubmit" class="btn btn-primary">Khôi phục mật khẩu</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/bundles/jquery?v=Hhw0srL0-4qR8srt_iy89H62uMRP16InFZyBSXo-blQ1"></script>
+
+    <script src="/bundles/bootstrap?v=ZA4h7uzWZi1XSJgibsu2YDxHuSeLAkQywKAdcpLD8lw1"></script>
+
+    <script src="/bundles/user_js?v="></script>
+
+    <script src="https://www.google.com/recaptcha/api.js?render=6Le2hPsUAAAAALzwDvu8vWcd7ImuBl_l49f927gN"></script>
+
+    <script src="/Assets/js/user_page/findjob.js"></script>
+    <script src="/Assets/js/user_page/companyjob.js"></script>
+
+
+
+    <div><div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;"><div class="grecaptcha-logo"><iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6Le2hPsUAAAAALzwDvu8vWcd7ImuBl_l49f927gN&amp;co=aHR0cDovL2l0b3BlbmRheS5odXRlY2guZWR1LnZuOjgw&amp;hl=vi&amp;v=nEGwmCAyCoKVn9PSwAGnQWhY&amp;size=invisible&amp;cb=6xtepuf6enci" width="256" height="60" role="presentation" name="a-qb4ts84i9q3" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response-100000" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div>
+</body>
+</html>
+
+
+
+

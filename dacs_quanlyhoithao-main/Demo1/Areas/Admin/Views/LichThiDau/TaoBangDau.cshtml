@@ -1,0 +1,38 @@
+﻿@model Demo1.Models.BANGDAU
+
+@{
+    ViewBag.Title = "Tạo bảng đấu";
+}
+
+<h2 style="text-align:center">TẠO BẢNG ĐẤU MỚI</h2>
+
+@using (Html.BeginForm())
+{
+    @ViewData["ThemBangDauThanhCong"]
+    @ViewData["CheckSanDau"]
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <p>
+            <a class="btn btn-primary" href="@Url.Action("ChiTietBangDau","LichThiDau")" style=" margin-left: 16px">Danh sách bảng đấu</a>
+        </p>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input placeholder="Tên Bảng đấu" id="TENBANGDAU" type="text" name="TENBANGDAU"
+                       @Html.EditorFor(model => model.MaBangDau, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Tạo" class="btn btn-primary" />
+                <a href="@Url.Action("ChiTietBangDau", "LichThiDau")" class="btn btn-danger">
+                    Quay lại
+                </a>
+            </div>
+        </div>
+    </div>
+}
+
+

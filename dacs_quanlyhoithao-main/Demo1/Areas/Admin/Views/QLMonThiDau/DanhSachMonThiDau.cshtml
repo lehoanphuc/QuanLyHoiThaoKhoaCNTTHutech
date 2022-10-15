@@ -1,0 +1,119 @@
+﻿@using Demo1.Models
+@{
+    ViewBag.Title = "DanhSachMonThiDau";
+    //Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <div class="box">
+        <h2 style="text-align:center; color: black; margin-top:10px">Quản Lý Môn Thi Đấu</h2>
+        <p>
+            <a class="btn btn-primary" href="@Url.Action("TaoMonThiDau","QLMonThiDau")" style=" margin-left: 16px">Thêm Môn Thi Đấu</a>
+        </p>
+
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table id="example2" class="table table-bordered table-hover">
+                <thead style="color:black; text-align:center">
+                    <tr>
+                        <th>
+                            Tên Môn
+                        </th>
+                        <th>
+                            Thể Thức
+                        </th>
+                        <th>
+                            Số Lượng Đội
+                        </th>
+                        <th>
+                            Lệ Phí
+                        </th>
+                        <th>
+                            Ngày
+                        </th>
+                        @*<th>
+                            Ngày Bắt Đầu
+                        </th>
+                        <th>
+                            Ngày Kết Thúc
+                        </th>
+                        <th>
+                            Ngày Chỉnh Sửa
+                        </th>*@
+                        <th>
+                            Ghi Chú
+                        </th>
+                        <th>
+                            Trạng Thái
+                        </th>
+                        <th>
+                            Tác Vụ
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        //if (item.TrangThai == 1)
+                        //{
+                    <tr style="color:black; text-align:center">
+                        <td>
+                            @item.TenMon
+                        </td>
+                        <td>
+                            @if (item.TheLoai == 1)
+                            {
+                                <p>Cá Nhân</p>
+                            }
+                            else
+                            {
+                                <p>Đồng Đội</p>
+                            }
+                        </td>
+                        <td>
+                            <p>@item.SoLuongDoi Đội</p>
+                        </td>
+                        <td>
+                            <p>@String.Format("{0:0,0}", item.LePhi) VNĐ</p>
+                        </td>
+                        <td>
+                            <p>Ngày Tạo: @item.NgayTao</p>
+                            <p>Ngày Bắt Đầu: @item.NgayBatDau</p>
+                            <p>Ngày Kết Thúc: @item.NgayKetThuc</p>
+                            @if (item.NgayChinhSua != null)
+                            {
+                                <p>Ngày Chỉnh Sửa: @item.NgayChinhSua</p>
+                            }
+
+
+                        </td>                       
+                        <td>
+                            @item.GhiChu
+                        </td>
+                        <td>
+                            @if (item.TrangThai == 1)
+                            {
+                                <p>Hoạt Động</p>
+                            }
+                            else
+                            {
+                                <p>Ẩn</p>
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" style="font-size:10px;" href="@Url.Action("SuaMonThiDau", new { id = item.MaMon })"><i class="fa fa-fw fa-pen "></i></a>
+                            @*<a class="btn btn-danger" style="font-size:10px;" href="@Url.Action("DeleteDieuLe", new { id = item.MaDieuLe })"><i class="fa fa-fw fa-trash"></i></a>*@
+                        </td>
+
+                    </tr>
+                        @*}*@
+
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+</div>
+
+

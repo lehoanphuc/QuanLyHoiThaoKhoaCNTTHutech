@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "CoVua_CoTuongAdmin";
+}
+
+<body>
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        /* Set height of body and the document to 100% */
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        /* Style tab links */
+        .tablink {
+            background-color: #2E86C1;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 50%;
+        }
+
+            .tablink:hover {
+                background-color: #AED6F1;
+            }
+
+        /* Style the tab content (and add height:100% for full page content) */
+        .tabcontent {
+            color: black;
+            display: none;
+            padding: 100px 20px;
+            height: 100%;
+        }
+
+        #Home {
+            background-color: #F8F9F9;
+        }
+
+        #News {
+            background-color: #F8F9F9;
+        }
+
+        #Contact {
+            background-color: #F8F9F9;
+        }
+
+        #About {
+            background-color: #F8F9F9;
+        }
+    </style>
+    <div style="margin:-25px;">
+        <button class="tablink" onclick="openPage('Home', this, '#D35400')" id="defaultOpen">Cờ Vua</button>
+        <button class="tablink" onclick="openPage('News', this, '#D35400')">Cờ tướng</button>
+
+        <div id="Home" class="tabcontent">
+            <h3>Quản lý điểm</h3>
+            <h3>Quản lý số trận thắng</h3>
+        </div>
+
+        <div id="News" class="tabcontent">
+            <h3>Quản lý điểm</h3>
+            <h3>Quản lý số trận thắng</h3>
+        </div>
+
+
+        <script>
+            function openPage(pageName, elmnt, color) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablink");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].style.backgroundColor = "";
+                }
+                document.getElementById(pageName).style.display = "block";
+                elmnt.style.backgroundColor = color;
+            }
+
+            // Get the element with id="defaultOpen" and click on it
+            document.getElementById("defaultOpen").click();
+        </script>
+    </div>
+</body>
+
+
